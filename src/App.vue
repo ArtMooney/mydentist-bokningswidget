@@ -19,7 +19,7 @@
         <div>Klinik / Ort</div>
         <div class="text-large">Borås</div>
         <div v-show="dropdownClinics" class="column dropdown">
-          <div v-for="clinic of listClinics.data">
+          <div v-for="clinic of listClinics.data" class="list-item">
             {{ clinic.attributes.clinic_name }}
           </div>
         </div>
@@ -33,7 +33,7 @@
         <div>Behandling</div>
         <div class="text-large">Tandblekning</div>
         <div v-show="dropdownProcedures" class="column dropdown">
-          <div v-for="procedure of listProcedures.data">
+          <div v-for="procedure of listProcedures.data" class="list-item">
             {{ procedure.attributes.name }}
           </div>
         </div>
@@ -47,7 +47,7 @@
         <div>Behandlare</div>
         <div class="text-large">Big Mike Obama</div>
         <div v-show="dropdownCaregivers" class="column dropdown">
-          <div v-for="caregiver of listCaregivers.data">
+          <div v-for="caregiver of listCaregivers.data" class="list-item">
             {{ caregiver.attributes.first_name }}
             {{ caregiver.attributes.last_name }}
           </div>

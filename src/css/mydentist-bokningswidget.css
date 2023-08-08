@@ -61,7 +61,7 @@ a {
   border-radius: 0.5rem;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 1rem 0;
   position: absolute;
   top: 90%;
   bottom: auto;
@@ -122,6 +122,15 @@ a {
 
 .hover-background:hover {
   transform: translate(0) scale(1);
+}
+
+.list-item {
+  width: 100%;
+  padding: 0.3rem 1rem;
+}
+
+.list-item:hover {
+  background-color: #f7f7f7;
 }
 
 @media screen and (max-width: 991px) {

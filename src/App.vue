@@ -106,20 +106,22 @@ export default {
 
   data() {
     return {
-      spotPeriodWebhook: "XXX",
-      userName: "XXX",
-      userPass: "XXX",
+      getListOrt: "https://api.ngine.se/webhook/mydentist/get-orter",
+      userName: "XkehuCfMZ!hU%8h=",
+      userPass: "QH5EV=2hNc*LFjJd",
       dropdownOrt: false,
       dropdownBehandling: false,
       dropdownBehandlare: false,
       item: "",
+      listOrt: [],
     };
   },
 
   async created() {
     console.clear();
 
-    // this.spotPeriodPrices = await this.getApiData(this.spotPeriodWebhook);
+    this.listOrt = await this.getApiData(this.getListOrt);
+    console.log("LIST", JSON.parse(JSON.stringify(this.listOrt)));
   },
 
   methods: {

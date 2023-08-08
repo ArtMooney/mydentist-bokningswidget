@@ -17,9 +17,13 @@
       >
         <div class="hover-background"></div>
         <div>Klinik / Ort</div>
-        <div class="text-large">Borås</div>
+        <div class="text-large">{{ chosenClinic }}</div>
         <div v-show="dropdownClinics" class="column dropdown">
-          <div v-for="clinic of listClinics.data" class="list-item">
+          <div
+            v-for="clinic of listClinics.data"
+            @click="handleClinics"
+            class="list-item"
+          >
             {{ clinic.attributes.clinic_name }}
           </div>
         </div>
@@ -31,9 +35,13 @@
       >
         <div class="hover-background"></div>
         <div>Behandling</div>
-        <div class="text-large">Tandblekning</div>
+        <div class="text-large">{{ chosenProcedure }}</div>
         <div v-show="dropdownProcedures" class="column dropdown">
-          <div v-for="procedure of listProcedures.data" class="list-item">
+          <div
+            v-for="procedure of listProcedures.data"
+            @click="handleProcedures"
+            class="list-item"
+          >
             {{ procedure.attributes.name }}
           </div>
         </div>
@@ -45,9 +53,13 @@
       >
         <div class="hover-background"></div>
         <div>Behandlare</div>
-        <div class="text-large">Big Mike Obama</div>
+        <div class="text-large">{{ chosenCaregiver }}</div>
         <div v-show="dropdownCaregivers" class="column dropdown">
-          <div v-for="caregiver of listCaregivers.data" class="list-item">
+          <div
+            v-for="caregiver of listCaregivers.data"
+            @click="handleCaregivers"
+            class="list-item"
+          >
             {{ caregiver.attributes.first_name }}
             {{ caregiver.attributes.last_name }}
           </div>
@@ -85,6 +97,9 @@ export default {
       listClinics: [],
       listProcedures: [],
       listCaregivers: [],
+      chosenClinic: "-",
+      chosenProcedure: "-",
+      chosenCaregiver: "-",
     };
   },
 
@@ -151,6 +166,24 @@ export default {
         this.dropdownClinics = false;
         this.dropdownProcedures = false;
       }
+    },
+
+    handleClinics(event) {
+      console.log(event.target.innerText);
+
+      this.chosenClinic = event.target.innerText;
+    },
+
+    handleProcedures(event) {
+      console.log(event.target.innerText);
+
+      this.chosenProcedure = event.target.innerText;
+    },
+
+    handleCaregivers(event) {
+      console.log(event.target.innerText);
+
+      this.chosenCaregiver = event.target.innerText;
     },
   },
 };

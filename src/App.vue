@@ -11,81 +11,46 @@
       class="bokningswidget-wrapper"
     >
       <div
-        @click="handleDropdownOrt"
+        @click="handledropdownClinics"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
         class="column left"
       >
         <div class="hover-background"></div>
         <div>Klinik / Ort</div>
         <div class="text-large">Borås</div>
-        <div v-show="dropdownOrt" class="column dropdown">
-          <div>{{ item }}</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
+        <div v-show="dropdownClinics" class="column dropdown">
+          <div v-for="clinic of listClinics.data">
+            {{ clinic.attributes.clinic_name }}
+          </div>
         </div>
       </div>
       <div
-        @click="handleDropdownBehandling"
+        @click="handledropdownProcedures"
         id="w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe"
         class="column"
       >
         <div class="hover-background"></div>
         <div>Behandling</div>
         <div class="text-large">Tandblekning</div>
-        <div v-show="dropdownBehandling" class="column dropdown">
-          <div>{{ item }}</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
+        <div v-show="dropdownProcedures" class="column dropdown">
+          <div v-for="procedure of listProcedures.data">
+            {{ procedure.attributes.name }}
+          </div>
         </div>
       </div>
       <div
-        @click="handleDropdownBehandlare"
+        @click="handledropdownCaregivers"
         id="w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe"
         class="column"
       >
         <div class="hover-background"></div>
         <div>Behandlare</div>
         <div class="text-large">Big Mike Obama</div>
-        <div v-show="dropdownBehandlare" class="column dropdown">
-          <div>{{ item }}</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
-          <div>Lista med items</div>
+        <div v-show="dropdownCaregivers" class="column dropdown">
+          <div v-for="caregiver of listCaregivers.data">
+            {{ caregiver.attributes.first_name }}
+            {{ caregiver.attributes.last_name }}
+          </div>
         </div>
       </div>
       <div
@@ -106,22 +71,33 @@ export default {
 
   data() {
     return {
-      getListOrt: "https://api.ngine.se/webhook/mydentist/get-orter",
+      getListClinics: "https://api.ngine.se/webhook/mydentist/get-clinics",
+      getListProcedures:
+        "https://api.ngine.se/webhook/mydentist/get-procedures",
+      getListCaregivers:
+        "https://api.ngine.se/webhook/mydentist/get-caregivers",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
-      dropdownOrt: false,
-      dropdownBehandling: false,
-      dropdownBehandlare: false,
+      dropdownClinics: false,
+      dropdownProcedures: false,
+      dropdownCaregivers: false,
       item: "",
-      listOrt: [],
+      listClinics: [],
+      listProcedures: [],
+      listCaregivers: [],
     };
   },
 
   async created() {
     console.clear();
 
-    this.listOrt = await this.getApiData(this.getListOrt);
-    console.log("LIST", JSON.parse(JSON.stringify(this.listOrt)));
+    this.listClinics = await this.getApiData(this.getListClinics);
+    this.listProcedures = await this.getApiData(this.getListProcedures);
+    this.listCaregivers = await this.getApiData(this.getListCaregivers);
+
+    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
+    // console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
+    // console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
   },
 
   methods: {
@@ -150,30 +126,30 @@ export default {
       });
     },
 
-    handleDropdownOrt() {
-      this.dropdownOrt = !this.dropdownOrt;
+    handledropdownClinics() {
+      this.dropdownClinics = !this.dropdownClinics;
 
-      if (this.dropdownOrt) {
-        this.dropdownBehandling = false;
-        this.dropdownBehandlare = false;
+      if (this.dropdownClinics) {
+        this.dropdownProcedures = false;
+        this.dropdownCaregivers = false;
       }
     },
 
-    handleDropdownBehandling() {
-      this.dropdownBehandling = !this.dropdownBehandling;
+    handledropdownProcedures() {
+      this.dropdownProcedures = !this.dropdownProcedures;
 
-      if (this.dropdownBehandling) {
-        this.dropdownOrt = false;
-        this.dropdownBehandlare = false;
+      if (this.dropdownProcedures) {
+        this.dropdownClinics = false;
+        this.dropdownCaregivers = false;
       }
     },
 
-    handleDropdownBehandlare() {
-      this.dropdownBehandlare = !this.dropdownBehandlare;
+    handledropdownCaregivers() {
+      this.dropdownCaregivers = !this.dropdownCaregivers;
 
-      if (this.dropdownBehandlare) {
-        this.dropdownOrt = false;
-        this.dropdownBehandling = false;
+      if (this.dropdownCaregivers) {
+        this.dropdownClinics = false;
+        this.dropdownProcedures = false;
       }
     },
   },

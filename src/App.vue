@@ -11,7 +11,7 @@
       class="bokningswidget-wrapper"
     >
       <div
-        @click="dropdownOrt = !dropdownOrt"
+        @click="handleDropdownOrt"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
         class="column left"
       >
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div
-        @click="dropdownBehandling = !dropdownBehandling"
+        @click="handleDropdownBehandling"
         id="w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe"
         class="column"
       >
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div
-        @click="dropdownBehandlare = !dropdownBehandlare"
+        @click="handleDropdownBehandlare"
         id="w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe"
         class="column"
       >
@@ -146,6 +146,33 @@ export default {
             reject(error);
           });
       });
+    },
+
+    handleDropdownOrt() {
+      this.dropdownOrt = !this.dropdownOrt;
+
+      if (this.dropdownOrt) {
+        this.dropdownBehandling = false;
+        this.dropdownBehandlare = false;
+      }
+    },
+
+    handleDropdownBehandling() {
+      this.dropdownBehandling = !this.dropdownBehandling;
+
+      if (this.dropdownBehandling) {
+        this.dropdownOrt = false;
+        this.dropdownBehandlare = false;
+      }
+    },
+
+    handleDropdownBehandlare() {
+      this.dropdownBehandlare = !this.dropdownBehandlare;
+
+      if (this.dropdownBehandlare) {
+        this.dropdownOrt = false;
+        this.dropdownBehandling = false;
+      }
     },
   },
 };

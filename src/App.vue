@@ -111,9 +111,9 @@ export default {
     this.listProcedures = await this.getApiData(this.getListProcedures);
     this.listCaregivers = await this.getApiData(this.getListCaregivers);
 
-    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
-    // console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
-    // console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
+    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
+    console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
+    console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
 
     this.handleQueries();
   },
@@ -174,17 +174,20 @@ export default {
 
     handleClinics(event) {
       this.chosenClinic = event.target.innerText;
+      this.updateQueryString();
     },
 
     handleProcedures(event) {
       this.chosenProcedure = event.target.innerText;
+      this.updateQueryString();
     },
 
     handleCaregivers(event) {
       this.chosenCaregiver = event.target.innerText;
+      this.updateQueryString();
     },
 
-    handleBooking() {
+    getQueryString() {
       let queryString = "?";
 
       if (this.chosenClinic && this.chosenClinic !== "-") {
@@ -203,7 +206,19 @@ export default {
 
       if (queryString === "?") queryString = "";
 
+      return queryString;
+    },
+
+    handleBooking() {
+      const queryString = this.getQueryString();
+
       window.location.href = "/boka" + queryString;
+    },
+
+    updateQueryString() {
+      const queryString = this.getQueryString();
+
+      history.pushState({}, "", "/boka" + queryString);
     },
 
     handleQueries() {

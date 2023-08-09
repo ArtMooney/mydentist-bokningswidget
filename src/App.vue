@@ -216,9 +216,15 @@ export default {
     },
 
     updateQueryString() {
-      const queryString = this.getQueryString();
+      const url = window.location.href;
+      const searchString = "/boka";
 
-      history.pushState({}, "", "/boka" + queryString);
+      // only update querystring if we are on the /boka page
+      if (url.indexOf(searchString) !== -1) {
+        const queryString = this.getQueryString();
+
+        history.pushState({}, "", "/boka" + queryString);
+      }
     },
 
     handleQueries() {

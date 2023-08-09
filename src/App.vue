@@ -68,6 +68,7 @@
       <div
         id="w-node-_15d05f01-d5c1-4387-6d10-54988da43617-1e7ebdbe"
         class="column right"
+        @click="handleBooking"
       >
         <div class="hover-layer">
           <div>Visa lediga tider</div>
@@ -113,6 +114,8 @@ export default {
     // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     // console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
     // console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
+
+    this.handleQueries();
   },
 
   methods: {
@@ -136,6 +139,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+
             reject(error);
           });
       });
@@ -169,21 +173,65 @@ export default {
     },
 
     handleClinics(event) {
-      console.log(event.target.innerText);
-
       this.chosenClinic = event.target.innerText;
     },
 
     handleProcedures(event) {
-      console.log(event.target.innerText);
-
       this.chosenProcedure = event.target.innerText;
     },
 
     handleCaregivers(event) {
-      console.log(event.target.innerText);
-
       this.chosenCaregiver = event.target.innerText;
+    },
+
+    handleBooking() {
+      let queryString = "?";
+
+      if (this.chosenClinic && this.chosenClinic !== "-") {
+        queryString = queryString + "clinic=" + this.chosenClinic;
+      }
+
+      if (this.chosenProcedure && this.chosenProcedure !== "-") {
+        queryString = queryString !== "?" ? queryString + "&" : queryString;
+        queryString = queryString + "procedure=" + this.chosenProcedure;
+      }
+
+      if (this.chosenCaregiver && this.chosenCaregiver !== "-") {
+        queryString = queryString !== "?" ? queryString + "&" : queryString;
+        queryString = queryString + "caregiver=" + this.chosenCaregiver;
+      }
+
+      if (queryString === "?") queryString = "";
+
+      window.location.href = "/boka" + queryString;
+    },
+
+    handleQueries() {
+      const urlString = window.location.href;
+
+      if (urlString.indexOf("?") !== -1) {
+        const queryString = urlString.split("?")[1].split("&");
+
+        for (const [index, query] of queryString.entries()) {
+          queryString[index] = decodeURIComponent(query);
+        }
+
+        for (const query of queryString) {
+          const command = query.split("=");
+
+          if (command[0] === "clinic") {
+            this.chosenClinic = command[1];
+          }
+
+          if (command[0] === "procedure") {
+            this.chosenProcedure = command[1];
+          }
+
+          if (command[0] === "caregiver") {
+            this.chosenCaregiver = command[1];
+          }
+        }
+      }
     },
   },
 };

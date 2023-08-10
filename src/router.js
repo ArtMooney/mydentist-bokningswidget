@@ -5,10 +5,6 @@ export default () =>
     history: createWebHistory(),
     routes: [
       {
-        path: "/",
-        name: "Home",
-      },
-      {
         path: "/boka",
         name: "Boka",
         component: () => import("./Boka.vue"),

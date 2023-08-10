@@ -116,14 +116,14 @@ export default {
     this.listCaregivers = await this.getApiData(
       this.apiBaseUrl + this.getListCaregivers
     );
-    this.listBookings = await this.getApiData(
-      this.apiBaseUrl + this.getListBookings
-    );
+    // this.listBookings = await this.getApiData(
+    //   this.apiBaseUrl + this.getListBookings
+    // );
 
     console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
     console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
-    console.log("BOOKINGS", JSON.parse(JSON.stringify(this.listBookings)));
+    // console.log("BOOKINGS", JSON.parse(JSON.stringify(this.listBookings)));
 
     this.initQueries();
   },

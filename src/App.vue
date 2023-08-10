@@ -11,7 +11,7 @@
       class="bokningswidget-wrapper"
     >
       <div
-        @click="handledropdownClinics"
+        @click.stop="handledropdownClinics"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
         class="column left"
       >
@@ -84,38 +84,48 @@ export default {
 
   data() {
     return {
-      getListClinics: "https://api.ngine.se/webhook/mydentist/get-clinics",
-      getListProcedures:
-        "https://api.ngine.se/webhook/mydentist/get-procedures",
-      getListCaregivers:
-        "https://api.ngine.se/webhook/mydentist/get-caregivers",
+      apiBaseUrl: "https://api.ngine.se/webhook/mydentist/",
+      getListClinics: "get-clinics",
+      getListProcedures: "get-procedures",
+      getListCaregivers: "get-caregivers",
+      getListBookings: "get-bookings",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
       dropdownClinics: false,
       dropdownProcedures: false,
       dropdownCaregivers: false,
-      item: "",
-      listClinics: [],
-      listProcedures: [],
-      listCaregivers: [],
       chosenClinic: "-",
       chosenProcedure: "-",
       chosenCaregiver: "-",
+      listClinics: [],
+      listProcedures: [],
+      listCaregivers: [],
+      listBookings: [],
     };
   },
 
   async created() {
     console.clear();
 
-    this.listClinics = await this.getApiData(this.getListClinics);
-    this.listProcedures = await this.getApiData(this.getListProcedures);
-    this.listCaregivers = await this.getApiData(this.getListCaregivers);
+    this.listClinics = await this.getApiData(
+      this.apiBaseUrl + this.getListClinics
+    );
+    this.listProcedures = await this.getApiData(
+      this.apiBaseUrl + this.getListProcedures
+    );
+    this.listCaregivers = await this.getApiData(
+      this.apiBaseUrl + this.getListCaregivers
+    );
+    this.listBookings = await this.getApiData(
+      this.apiBaseUrl + this.getListBookings
+    );
 
     console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
     console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
+    console.log("BOOKINGS", JSON.parse(JSON.stringify(this.listBookings)));
 
-    this.handleQueries();
+    this.initQueries();
   },
 
   methods: {
@@ -212,7 +222,8 @@ export default {
     handleBooking() {
       const queryString = this.getQueryString();
 
-      window.location.href = "/boka" + queryString;
+      // window.location.href = "/boka" + queryString;
+      this.$router.push("/boka" + queryString);
     },
 
     updateQueryString() {
@@ -227,7 +238,7 @@ export default {
       }
     },
 
-    handleQueries() {
+    initQueries() {
       const urlString = window.location.href;
 
       if (urlString.indexOf("?") !== -1) {

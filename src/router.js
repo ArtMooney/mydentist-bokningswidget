@@ -1,16 +1,22 @@
-import { createRouter, createWebHistory } from "vue-router";
-
+import {
+  createRouter,
+  createWebHistory,
+} from "vue-router/dist/vue-router.esm-bundler";
 import Home from "./Widget.vue";
-import Boka from "./Widget.vue";
 
-const routes = [
-  { path: "/", component: Home },
-  { path: "/boka", component: Boka },
-];
-
-const router = createRouter({
-  history: createWebHistory(),
-  routes,
-});
-
-export default router;
+export default () =>
+  createRouter({
+    history: createWebHistory(),
+    routes: [
+      {
+        path: "/",
+        name: "Home",
+        component: Home,
+      },
+      {
+        path: "/boka",
+        name: "Boka",
+        component: Home,
+      },
+    ],
+  });

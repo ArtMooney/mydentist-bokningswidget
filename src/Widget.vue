@@ -6,6 +6,7 @@
 
 <template>
   <div class="mydentist-bokningswidget">
+    <h2>Test 0.0.1</h2>
     <div
       id="w-node-_051a9b96-4ead-e118-8a59-194af47cb073-1e7ebdbe"
       class="bokningswidget-wrapper"

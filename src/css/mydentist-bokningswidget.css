@@ -30,7 +30,7 @@ a {
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  font-family: Ubuntu, Helvetica, sans-serif;
+  font-family: Fororounded, sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.4rem;
@@ -88,7 +88,7 @@ a {
 .text-large {
   color: #757575;
   text-align: center;
-  font-family: Ubuntu, Helvetica, sans-serif;
+  font-family: Fororounded, sans-serif;
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 2.1rem;
@@ -192,7 +192,7 @@ a {
   text-align: left;
   margin-top: 0;
   margin-bottom: 0;
-  font-family: Ubuntu, Helvetica, sans-serif;
+  font-family: Fororounded, sans-serif;
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 2.4rem;
@@ -332,4 +332,33 @@ a {
     align-self: stretch;
     justify-self: stretch;
   }
+}
+
+@font-face {
+  font-family: "Fororounded";
+  src: url("../fonts/ForoRounded-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fororounded";
+  src: url("../fonts/ForoRounded-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fororounded";
+  src: url("../fonts/ForoRounded-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fororounded";
+  src: url("../fonts/ForoRounded-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

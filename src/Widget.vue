@@ -79,10 +79,9 @@ export default {
   data() {
     return {
       apiBaseUrl: "https://api.ngine.se/webhook/mydentist/",
-      getListClinics: "get-clinics",
-      getListProcedures: "get-procedures",
-      getListCaregivers: "get-caregivers",
-      getListBookings: "get-bookings",
+      getClinics: "get-clinics",
+      getProcedures: "get-procedures",
+      getCaregivers: "get-caregivers",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
       dropdownClinics: false,
@@ -101,23 +100,17 @@ export default {
   async created() {
     console.clear();
 
-    this.listClinics = await this.getApiData(
-      this.apiBaseUrl + this.getListClinics
-    );
+    this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
     this.listProcedures = await this.getApiData(
-      this.apiBaseUrl + this.getListProcedures
+      this.apiBaseUrl + this.getProcedures
     );
     this.listCaregivers = await this.getApiData(
-      this.apiBaseUrl + this.getListCaregivers
+      this.apiBaseUrl + this.getCaregivers
     );
-    // this.listBookings = await this.getApiData(
-    //   this.apiBaseUrl + this.getListBookings
-    // );
 
     console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
     console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
-    // console.log("BOOKINGS", JSON.parse(JSON.stringify(this.listBookings)));
 
     this.initQueries();
   },

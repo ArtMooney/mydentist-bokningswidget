@@ -7,20 +7,6 @@ a {
   text-decoration: underline;
 }
 
-.mydentist-bokningswidget {
-  background-color: #fff;
-  flex-direction: column;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-auto-columns: 1fr;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  font-size: 100%;
-  line-height: 140%;
-  display: flex;
-}
-
 .column {
   outline-offset: 0px;
   color: #8f8f8f;
@@ -134,7 +120,7 @@ a {
   background-color: #f7f7f7;
 }
 
-.mydentist-bokningsui {
+.mydentist-app {
   background-color: #fff;
   flex-direction: column;
   grid-template-rows: auto;
@@ -142,9 +128,7 @@ a {
   grid-auto-columns: 1fr;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  font-size: 100%;
-  line-height: 140%;
+  padding: 1rem 1rem 2rem;
   display: flex;
   position: relative;
 }
@@ -184,7 +168,7 @@ a {
   height: 4.5rem;
   background-color: #f7f7f7;
   border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .text-heading {
@@ -196,6 +180,20 @@ a {
   font-size: 1.9rem;
   font-weight: 700;
   line-height: 2.4rem;
+}
+
+.minasidor-wrapper {
+  width: 90%;
+  max-width: 1280px;
+  min-height: 30rem;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+  grid-template-rows: 5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: row;
+  display: grid;
+  position: relative;
 }
 
 @media screen and (max-width: 991px) {
@@ -232,6 +230,10 @@ a {
     font-size: 1.6rem;
     line-height: 2.1rem;
   }
+
+  .minasidor-wrapper {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -247,6 +249,10 @@ a {
   .text-heading {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .minasidor-wrapper {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -278,7 +284,8 @@ a {
     grid-auto-rows: 1fr;
   }
 
-  .bokningsui-wrapper {
+  .bokningsui-wrapper,
+  .minasidor-wrapper {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
   }
@@ -315,6 +322,22 @@ a {
   grid-area: span 1 / span 2 / span 1 / span 2;
 }
 
+#w-node-_5ef4a456-78ee-3356-a721-49f53fdd5c23-2190bb79 {
+  grid-area: span 1 / span 1 / span 1 / span 1;
+}
+
+#w-node-_7774ae3b-e687-287a-81f9-e752ccf6179e-2190bb79,
+#w-node-_4bdeeea9-8aa6-fb9b-74fc-6d0ad61cef22-2190bb79 {
+  grid-area: span 1 / span 1 / span 1 / span 1;
+  align-self: end;
+  justify-self: start;
+}
+
+#w-node-_67bf3200-704d-3b6e-f47e-d3936cd845e7-2190bb79,
+#w-node-_26a306be-2192-95d0-49da-c3d6cf12b93a-2190bb79 {
+  grid-area: span 1 / span 1 / span 1 / span 1;
+}
+
 @media screen and (max-width: 767px) {
   #w-node-_4bdeeea9-8aa6-fb9b-74fc-6d0ad61cef22-1e7ebdbe {
     grid-area: span 1 / span 1 / span 1 / span 1;
@@ -328,6 +351,19 @@ a {
   }
 
   #w-node-_67bf3200-704d-3b6e-f47e-d3936cd845e7-1e7ebdbe {
+    grid-column: span 1 / span 1;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+
+  #w-node-_7774ae3b-e687-287a-81f9-e752ccf6179e-2190bb79,
+  #w-node-_4bdeeea9-8aa6-fb9b-74fc-6d0ad61cef22-2190bb79 {
+    grid-area: span 1 / span 1 / span 1 / span 1;
+    justify-self: center;
+  }
+
+  #w-node-_67bf3200-704d-3b6e-f47e-d3936cd845e7-2190bb79,
+  #w-node-_26a306be-2192-95d0-49da-c3d6cf12b93a-2190bb79 {
     grid-column: span 1 / span 1;
     align-self: stretch;
     justify-self: stretch;

@@ -1,5 +1,5 @@
 <template>
-  <div class="mydentist-bokningswidget">
+  <div class="mydentist-app">
     <div
       id="w-node-_051a9b96-4ead-e118-8a59-194af47cb073-1e7ebdbe"
       class="bokningswidget-wrapper"

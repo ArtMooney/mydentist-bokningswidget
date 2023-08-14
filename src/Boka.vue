@@ -2,7 +2,7 @@
   <div>
     <div
       class="muntra-widget without-modal"
-      key="6"
+      key="0"
       muntra_clinic_id="2"
       muntra_referral_source="https://www.mydentist.se/"
       muntra_without_modal="true"

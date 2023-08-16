@@ -100,9 +100,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.secondary .muntra-widget-button {
-  background-color: coral !important;
-  border: 0px;
+<style>
+.muntra-widget-modal-header {
+  display: none;
 }
 </style>

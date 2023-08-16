@@ -112,4 +112,10 @@ export default {
 .muntra-widget-modal-container-content {
   overflow-y: hidden !important;
 }
+
+@media screen and (max-width: 991px) {
+  .muntra-widget.without-modal {
+    width: 100%;
+  }
+}
 </style>

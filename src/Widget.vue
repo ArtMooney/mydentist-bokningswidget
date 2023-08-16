@@ -115,8 +115,7 @@ export default {
     console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
     console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
 
-    console.log("HEJ");
-    // this.initQueries();
+    this.initQueries();
   },
 
   methods: {

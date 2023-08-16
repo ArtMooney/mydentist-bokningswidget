@@ -14,8 +14,8 @@
         <div class="text-large">{{ chosenClinic }}</div>
         <div v-show="dropdownClinics" class="column dropdown">
           <div
-            v-for="clinic of listClinics.data"
-            @click="handleClinics"
+            v-for="(clinic, index) of listClinics.data"
+            @click="handleClinics($event, index)"
             class="list-item"
           >
             {{ clinic.attributes.clinic_name }}
@@ -32,8 +32,8 @@
         <div class="text-large">{{ chosenProcedure }}</div>
         <div v-show="dropdownProcedures" class="column dropdown">
           <div
-            v-for="procedure of listProcedures.data"
-            @click="handleProcedures"
+            v-for="(procedure, index) of listProcedures.data"
+            @click="handleProcedures($event, index)"
             class="list-item"
           >
             {{ procedure.attributes.name }}
@@ -50,8 +50,8 @@
         <div class="text-large">{{ chosenCaregiver }}</div>
         <div v-show="dropdownCaregivers" class="column dropdown">
           <div
-            v-for="caregiver of listCaregivers.data"
-            @click="handleCaregivers"
+            v-for="(caregiver, index) of listCaregivers.data"
+            @click="handleCaregivers($event, index)"
             class="list-item"
           >
             {{ caregiver.attributes.first_name }}
@@ -90,6 +90,9 @@ export default {
       chosenClinic: "-",
       chosenProcedure: "-",
       chosenCaregiver: "-",
+      clinicId: "",
+      procedureId: "",
+      caregiverId: "",
       listClinics: [],
       listProcedures: [],
       listCaregivers: [],
@@ -169,19 +172,36 @@ export default {
       }
     },
 
-    handleClinics(event) {
+    handleClinics(event, index) {
       this.chosenClinic = event.target.innerText;
       this.updateQueryString();
+
+      this.clinicId = this.listClinics.data[index].id;
+      this.emitQueryString();
     },
 
-    handleProcedures(event) {
+    handleProcedures(event, index) {
       this.chosenProcedure = event.target.innerText;
       this.updateQueryString();
+
+      this.procedureId = this.listProcedures.data[index].id;
+      this.emitQueryString();
     },
 
-    handleCaregivers(event) {
+    handleCaregivers(event, index) {
       this.chosenCaregiver = event.target.innerText;
       this.updateQueryString();
+
+      this.caregiverId = this.listCaregivers.data[index].id;
+      this.emitQueryString();
+    },
+
+    emitQueryString() {
+      this.$emit("queryparams", {
+        clinicId: this.clinicId,
+        procedureId: this.procedureId,
+        caregiverId: this.caregiverId,
+      });
     },
 
     getQueryString() {
@@ -209,7 +229,6 @@ export default {
     handleBooking() {
       const queryString = this.getQueryString();
 
-      // window.location.href = "/boka" + queryString;
       this.$router.push("/boka" + queryString);
     },
 
@@ -240,16 +259,41 @@ export default {
 
           if (command[0] === "clinic") {
             this.chosenClinic = command[1];
+
+            for (const clinic of this.listClinics.data) {
+              if (clinic.attributes.clinic_name === this.chosenClinic) {
+                this.clinicId = clinic.id;
+              }
+            }
           }
 
           if (command[0] === "procedure") {
             this.chosenProcedure = command[1];
+
+            for (const procedure of this.listProcedures.data) {
+              if (procedure.attributes.name === this.chosenProcedure) {
+                this.procedureId = procedure.id;
+              }
+            }
           }
 
           if (command[0] === "caregiver") {
             this.chosenCaregiver = command[1];
+
+            for (const caregiver of this.listCaregivers.data) {
+              if (
+                caregiver.attributes.first_name +
+                  " " +
+                  caregiver.attributes.last_name ===
+                this.chosenCaregiver
+              ) {
+                this.caregiverId = caregiver.id;
+              }
+            }
           }
         }
+
+        this.emitQueryString();
       }
     },
   },

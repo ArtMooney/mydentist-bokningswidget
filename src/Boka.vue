@@ -1,5 +1,5 @@
 <template>
-  <div v-if="muntraWidget">
+  <div v-if="muntraWidget" class="mydentist-app">
     <!-- <div
       class="muntra-widget without-modal"
       key="0"
@@ -103,5 +103,13 @@ export default {
 <style>
 .muntra-widget-modal-header {
   display: none;
+}
+
+.muntra-widget.without-modal {
+  width: 80%;
+}
+
+.muntra-widget-modal-container-content {
+  overflow-y: hidden !important;
 }
 </style>

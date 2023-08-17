@@ -117,6 +117,31 @@ export default {
   overflow-y: hidden !important;
 }
 
+.gDGDod {
+  outline: none !important;
+  border: 0px solid transparent !important;
+  box-shadow: none !important;
+  border-radius: 0.4rem !important;
+  background-color: #9b1373 !important;
+}
+
+.bhjKRs {
+  box-shadow: none !important;
+  border: 0px solid transparent !important;
+}
+
+.cVQxmd.sc-hBMVcZ {
+  border-radius: 0% !important;
+  border-top-left-radius: 0% !important;
+  border-top-right-radius: 0% !important;
+  border-bottom-right-radius: 0% !important;
+  border-bottom-left-radius: 0% !important;
+}
+
+.cCGdyJ svg {
+  fill: #9b1373 !important;
+}
+
 @media screen and (max-width: 991px) {
   .muntra-widget.without-modal {
     width: 100%;

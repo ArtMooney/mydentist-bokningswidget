@@ -191,6 +191,10 @@ export default {
   align-items: flex-start;
 }
 
+.sc-fujyUd.sc-hiKfjK.cWWTbR.eTyHFg {
+  text-align: left;
+}
+
 @media screen and (max-width: 991px) {
   .muntra-widget.without-modal {
     width: 100%;

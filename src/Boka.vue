@@ -207,5 +207,10 @@ export default {
     font-size: 0.8rem;
     line-height: 1rem;
   }
+
+  .sc-hBMVcZ.dGarFN {
+    width: 100px !important;
+    height: 100px !important;
+  }
 }
 </style>

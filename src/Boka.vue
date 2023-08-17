@@ -55,6 +55,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.parameterChanged = !this.parameterChanged;
+  },
+
   methods: {
     startMuntra() {
       const script = document.createElement("script");

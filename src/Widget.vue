@@ -230,10 +230,6 @@ export default {
       const queryString = this.getQueryString();
 
       this.$router.push("/boka" + queryString);
-
-      setTimeout(() => {
-        this.initQueries();
-      }, 200);
     },
 
     updateQueryString() {

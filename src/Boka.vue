@@ -138,13 +138,63 @@ export default {
   border-bottom-left-radius: 0% !important;
 }
 
+.sc-hBMVcZ.dGarFN {
+  border-radius: 0% !important;
+  border-top-left-radius: 0% !important;
+  border-top-right-radius: 0% !important;
+  border-bottom-right-radius: 0% !important;
+  border-bottom-left-radius: 0% !important;
+}
+
+.muntra-widget-modal-content-wrapper {
+  font-family: Fororounded, sans-serif;
+}
+
+.gwofgg[disabled] svg {
+  fill: rgb(206, 206, 206) !important;
+}
+
 .cCGdyJ svg {
   fill: #9b1373 !important;
+}
+
+.sc-ArjOu.jDwODi {
+  margin-top: 2px;
+}
+
+.sc-fujyUd.cWWTbR {
+  text-align: center;
 }
 
 @media screen and (max-width: 991px) {
   .muntra-widget.without-modal {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .sc-fFSRdu.juCHze {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .sc-hBMVcZ.dGarFN {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .sc-fFSRdu.sc-fFSRdu.juCHze {
+    max-width: 100% !important;
+  }
+
+  .sc-jrsJCI.emsrNO {
+    text-align: center;
+  }
+
+  .sc-bkbjAj.gDGDod.sc-cOigif.iGliNw {
+    max-width: 100% !important;
   }
 }
 </style>

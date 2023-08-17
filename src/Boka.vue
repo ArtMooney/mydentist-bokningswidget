@@ -163,7 +163,32 @@ export default {
 }
 
 .sc-fujyUd.cWWTbR {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
   text-align: center;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+}
+
+.sc-fFSRdu.juCHze {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.sc-fFSRdu.sc-cTJmaU.juCHze.exOFdF {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.sc-fFSRdu.sc-jNnnWF.juCHze.fCQiqA {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 @media screen and (max-width: 991px) {
@@ -173,28 +198,14 @@ export default {
 }
 
 @media screen and (max-width: 479px) {
-  .sc-fFSRdu.juCHze {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+  .sc-fujyUd.cWWTbR {
+    font-size: 1.2rem;
+    line-height: 1.7rem;
   }
 
-  .sc-hBMVcZ.dGarFN {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .sc-fFSRdu.sc-fFSRdu.juCHze {
-    max-width: 100% !important;
-  }
-
-  .sc-jrsJCI.emsrNO {
-    text-align: center;
-  }
-
-  .sc-bkbjAj.gDGDod.sc-cOigif.iGliNw {
-    max-width: 100% !important;
+  .sc-ArjOu.jDwODi {
+    font-size: 0.8rem;
+    line-height: 1rem;
   }
 }
 </style>

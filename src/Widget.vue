@@ -83,11 +83,8 @@ export default {
   data() {
     return {
       apiBaseUrl: "https://api.ngine.se/webhook/mydentist/",
+      getClinic: "get-clinic",
       getClinics: "get-clinics",
-      getProcedures: "get-procedures",
-      getCaregivers: "get-caregivers",
-      muntraBaseUrl: "https://journalapi.prodentor.se/api/",
-      muntraClinics: "muntra-clinics",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
       dropdownClinics: false,
@@ -102,7 +99,6 @@ export default {
       listClinics: [],
       listProcedures: [],
       listCaregivers: [],
-      listBookings: [],
     };
   },
 
@@ -176,7 +172,7 @@ export default {
       this.updateQueryString();
 
       this.clinicId = this.listClinics.data[index].id;
-      this.getClinic(this.clinicId);
+      this.getDetailedClinic(this.clinicId);
       this.updateQueryString();
       this.emitQueryString();
     },
@@ -272,7 +268,7 @@ export default {
         }
 
         if (this.clinicId) {
-          await this.getClinic(this.clinicId);
+          await this.getDetailedClinic(this.clinicId);
           this.chosenClinic = chosenClinic;
 
           for (const query of queryString) {
@@ -310,12 +306,9 @@ export default {
       }
     },
 
-    async getClinic(clientNumber) {
-      const query =
-        "?include=caregiver_locations.default_procedure.procedure%2Ccaregiver_locations.free_bookable_slots%2Ccaregiver_locations.caregivers.role%2Ccaregiver_locations.caregivers.default_user_image%2Ccaregiver_locations.procedures.procedure%2Cgoogle_place_detail.parent_place%2Clogotype%2Ccaregiver_locations.next_free_bookable_slot&include_administrative_roles=false&include_caregiver_locations_without_procedure_id_matches=false&new_patient=false";
-
+    async getDetailedClinic(clientNumber) {
       const clinic = await this.getApiData(
-        this.muntraBaseUrl + this.muntraClinics + "/" + clientNumber + query
+        this.apiBaseUrl + this.getClinic + "?clinic=" + clientNumber
       );
 
       let listProcedures = [];

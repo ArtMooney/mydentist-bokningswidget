@@ -32,12 +32,14 @@
         <div class="text-large">{{ chosenProcedure }}</div>
         <div v-show="dropdownProcedures" class="column dropdown">
           <div
+            v-if="listProcedures.data"
             v-for="(procedure, index) of listProcedures.data"
             @click="handleProcedures($event, index)"
             class="list-item"
           >
             {{ procedure.attributes.name }}
           </div>
+          <div v-else class="list-item">Inga behandlingar</div>
         </div>
       </div>
       <div
@@ -50,6 +52,7 @@
         <div class="text-large">{{ chosenCaregiver }}</div>
         <div v-show="dropdownCaregivers" class="column dropdown">
           <div
+            v-if="listCaregivers.data"
             v-for="(caregiver, index) of listCaregivers.data"
             @click="handleCaregivers($event, index)"
             class="list-item"
@@ -57,6 +60,7 @@
             {{ caregiver.attributes.first_name }}
             {{ caregiver.attributes.last_name }}
           </div>
+          <div v-else class="list-item">Inga behandlare</div>
         </div>
       </div>
       <div
@@ -82,6 +86,8 @@ export default {
       getClinics: "get-clinics",
       getProcedures: "get-procedures",
       getCaregivers: "get-caregivers",
+      muntraBaseUrl: "https://journalapi.prodentor.se/api/",
+      muntraClinics: "muntra-clinics",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
       dropdownClinics: false,
@@ -104,17 +110,6 @@ export default {
     console.clear();
 
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
-    this.listProcedures = await this.getApiData(
-      this.apiBaseUrl + this.getProcedures
-    );
-    this.listCaregivers = await this.getApiData(
-      this.apiBaseUrl + this.getCaregivers
-    );
-
-    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
-    console.log("PROCEDURES", JSON.parse(JSON.stringify(this.listProcedures)));
-    console.log("CAREGIVERS", JSON.parse(JSON.stringify(this.listCaregivers)));
-
     this.initQueries();
   },
 
@@ -174,9 +169,15 @@ export default {
 
     handleClinics(event, index) {
       this.chosenClinic = event.target.innerText;
+      this.procedureId = "";
+      this.chosenProcedure = "-";
+      this.caregiverId = "";
+      this.chosenCaregiver = "-";
       this.updateQueryString();
 
       this.clinicId = this.listClinics.data[index].id;
+      this.getClinic(this.clinicId);
+      this.updateQueryString();
       this.emitQueryString();
     },
 
@@ -244,7 +245,7 @@ export default {
       }
     },
 
-    initQueries() {
+    async initQueries() {
       const urlString = window.location.href;
 
       if (urlString.indexOf("?") !== -1) {
@@ -254,47 +255,86 @@ export default {
           queryString[index] = decodeURIComponent(query);
         }
 
+        let chosenClinic;
+
         for (const query of queryString) {
           const command = query.split("=");
 
           if (command[0] === "clinic") {
-            this.chosenClinic = command[1];
+            chosenClinic = command[1];
 
             for (const clinic of this.listClinics.data) {
-              if (clinic.attributes.clinic_name === this.chosenClinic) {
+              if (clinic.attributes.clinic_name === chosenClinic) {
                 this.clinicId = clinic.id;
-              }
-            }
-          }
-
-          if (command[0] === "procedure") {
-            this.chosenProcedure = command[1];
-
-            for (const procedure of this.listProcedures.data) {
-              if (procedure.attributes.name === this.chosenProcedure) {
-                this.procedureId = procedure.id;
-              }
-            }
-          }
-
-          if (command[0] === "caregiver") {
-            this.chosenCaregiver = command[1];
-
-            for (const caregiver of this.listCaregivers.data) {
-              if (
-                caregiver.attributes.first_name +
-                  " " +
-                  caregiver.attributes.last_name ===
-                this.chosenCaregiver
-              ) {
-                this.caregiverId = caregiver.id;
               }
             }
           }
         }
 
+        if (this.clinicId) {
+          await this.getClinic(this.clinicId);
+          this.chosenClinic = chosenClinic;
+
+          for (const query of queryString) {
+            const command = query.split("=");
+
+            if (command[0] === "procedure") {
+              this.chosenProcedure = command[1];
+
+              for (const procedure of this.listProcedures.data) {
+                if (procedure.attributes.name === this.chosenProcedure) {
+                  this.procedureId = procedure.id;
+                }
+              }
+            }
+
+            if (command[0] === "caregiver") {
+              this.chosenCaregiver = command[1];
+
+              for (const caregiver of this.listCaregivers.data) {
+                if (
+                  caregiver.attributes.first_name +
+                    " " +
+                    caregiver.attributes.last_name ===
+                  this.chosenCaregiver
+                ) {
+                  this.caregiverId = caregiver.id;
+                }
+              }
+            }
+          }
+        }
+
+        this.updateQueryString();
         this.emitQueryString();
       }
+    },
+
+    async getClinic(clientNumber) {
+      const query =
+        "?include=caregiver_locations.default_procedure.procedure%2Ccaregiver_locations.free_bookable_slots%2Ccaregiver_locations.caregivers.role%2Ccaregiver_locations.caregivers.default_user_image%2Ccaregiver_locations.procedures.procedure%2Cgoogle_place_detail.parent_place%2Clogotype%2Ccaregiver_locations.next_free_bookable_slot&include_administrative_roles=false&include_caregiver_locations_without_procedure_id_matches=false&new_patient=false";
+
+      const clinic = await this.getApiData(
+        this.muntraBaseUrl + this.muntraClinics + "/" + clientNumber + query
+      );
+
+      let listProcedures = [];
+      let listCaregivers = [];
+
+      for (const data of clinic.included) {
+        if (data.type === "muntra_procedure") {
+          listProcedures.push(data);
+        }
+      }
+
+      for (const data of clinic.included) {
+        if (data.type === "muntra_caregiver") {
+          listCaregivers.push(data);
+        }
+      }
+
+      this.listProcedures.data = listProcedures;
+      this.listCaregivers.data = listCaregivers;
     },
   },
 };

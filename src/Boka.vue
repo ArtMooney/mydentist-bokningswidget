@@ -1,29 +1,40 @@
 <template>
   <div v-if="muntraWidget" class="mydentist-app">
-    <!-- <div
-      class="muntra-widget without-modal"
-      key="0"
-      muntra_clinic_id="2"
-      muntra_procedure_id="4"
-      muntra_without_modal="true"
-    ></div> -->
-
     <div
-      class="muntra-widget without-modal"
-      key="0"
-      :muntra_clinic_id="clinicId"
-      :muntra_procedure_id="procedureId"
-      muntra_without_modal="true"
-    ></div>
-
-    <!-- <div
+      v-if="clinicId && procedureId && caregiverId"
       class="muntra-widget without-modal"
       key="0"
       :muntra_clinic_id="clinicId"
       :muntra_procedure_id="procedureId"
       :muntra_caregiver_id="caregiverId"
       muntra_without_modal="true"
-    ></div> -->
+    ></div>
+
+    <div
+      v-else-if="clinicId && procedureId"
+      class="muntra-widget without-modal"
+      key="1"
+      :muntra_clinic_id="clinicId"
+      :muntra_procedure_id="procedureId"
+      muntra_without_modal="true"
+    ></div>
+
+    <div
+      v-else-if="clinicId && caregiverId"
+      class="muntra-widget without-modal"
+      key="2"
+      :muntra_clinic_id="clinicId"
+      :muntra_caregiver_id="caregiverId"
+      muntra_without_modal="true"
+    ></div>
+
+    <div
+      v-else-if="clinicId"
+      class="muntra-widget without-modal"
+      key="3"
+      :muntra_clinic_id="clinicId"
+      muntra_without_modal="true"
+    ></div>
   </div>
 </template>
 
@@ -52,6 +63,7 @@ export default {
       muntraWidget: false,
       timeoutId: null,
       parameterChanged: false,
+      testNumber: "177",
     };
   },
 

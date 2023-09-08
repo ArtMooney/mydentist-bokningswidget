@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     assetsInlineLimit: 51200,
+    rollupOptions: {
+      output: {
+        manualChunks: () => "app",
+      },
+    },
   },
 });

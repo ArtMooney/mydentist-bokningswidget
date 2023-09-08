@@ -5,52 +5,40 @@
       class="bokningswidget-wrapper"
     >
       <div
-        @click.stop="handledropdownClinics"
+        @click.stop="handlepopupClinics"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
         class="column left"
       >
         <div class="hover-background"></div>
         <div>Klinik / Ort</div>
         <div class="text-large">{{ chosenClinic }}</div>
-        <div v-show="dropdownClinics" class="column dropdown">
-          <div
-            v-for="(clinic, index) of listClinics.data"
-            @click="handleClinics($event, index)"
-            class="list-item"
-          >
-            {{ clinic.attributes.clinic_name }}
-          </div>
-        </div>
       </div>
       <div
-        @click="handledropdownProcedures"
+        @click="handlepopupProcedures"
         id="w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe"
         class="column"
       >
         <div class="hover-background"></div>
         <div>Behandling</div>
         <div class="text-large">{{ chosenProcedure }}</div>
-        <div v-show="dropdownProcedures" class="column dropdown">
+        <div v-show="popupProcedures" class="column dropdown">
           <div
-            v-if="listProcedures.data"
-            v-for="(procedure, index) of listProcedures.data"
-            @click="handleProcedures($event, index)"
+            v-show="popupProcedures && !listProcedures.data"
             class="list-item"
           >
-            {{ procedure.attributes.name }}
+            Inga behandlingar, välj klinik först.
           </div>
-          <div v-else class="list-item">Inga behandlingar</div>
         </div>
       </div>
       <div
-        @click="handledropdownCaregivers"
+        @click="handlepopupCaregivers"
         id="w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe"
         class="column"
       >
         <div class="hover-background"></div>
         <div>Behandlare</div>
         <div class="text-large">{{ chosenCaregiver }}</div>
-        <div v-show="dropdownCaregivers" class="column dropdown">
+        <div v-show="popupCaregivers" class="column dropdown">
           <div
             v-if="listCaregivers.data"
             v-for="(caregiver, index) of listCaregivers.data"
@@ -60,7 +48,9 @@
             {{ caregiver.attributes.first_name }}
             {{ caregiver.attributes.last_name }}
           </div>
-          <div v-else class="list-item">Inga behandlare</div>
+          <div v-else class="list-item">
+            Inga behandlare, välj klinik först.
+          </div>
         </div>
       </div>
       <div
@@ -71,6 +61,112 @@
         <div class="hover-layer">
           <div>Visa lediga tider</div>
         </div>
+      </div>
+    </div>
+
+    <div
+      v-show="
+        popupClinics ||
+        (popupProcedures && listProcedures.data) ||
+        (popupCaregivers && listCaregivers.data)
+      "
+      class="list-popup-wrapper"
+    >
+      <div class="column list-popup">
+        <div class="popup-top-menu">
+          <div class="popup-title-icon-wrapper">
+            <div class="popup-title-wrapper">
+              <img
+                src="./images/mydentist_favicon.png"
+                loading="lazy"
+                alt=""
+                class="popup-tooth-icon"
+              />
+              <div class="text-block">{{ getPopupTitle() }}</div>
+            </div>
+            <font-awesome-icon
+              icon="fa-solid fa-xmark"
+              class="popup-close-icon"
+              @click="closePopup"
+            />
+          </div>
+          <div
+            v-show="popupClinics || popupCaregivers"
+            class="search-container"
+          >
+            <div class="search-wrapper">
+              <font-awesome-icon
+                icon="fa-solid fa-magnifying-glass"
+                class="search-icon"
+              />
+              <input
+                type="text"
+                class="search-input w-input"
+                maxlength="256"
+                name="popup-search"
+                data-name="PopupSearch"
+                placeholder=""
+                id="popup-search"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="list-scroll">
+          <div
+            v-if="popupClinics"
+            v-for="(clinic, index) of listClinics.data"
+            @click="handleClinics($event, index)"
+            class="popup-list-item"
+          >
+            <div>
+              <div class="popup-item-title">
+                {{ clinic.attributes.clinic_city }}
+              </div>
+              <div>{{ clinic.attributes.clinic_address_1 }}</div>
+              <div>{{ clinic.attributes.clinic_address_2 }}</div>
+            </div>
+          </div>
+
+          <div
+            v-if="popupProcedures"
+            v-for="(procedure, index) of listProcedures.data"
+            @click="handleProcedures($event, index)"
+            class="popup-list-item"
+          >
+            <div>
+              <div class="popup-item-title">
+                {{ procedure.attributes.name }}
+              </div>
+              <div>Lorem ipsum</div>
+            </div>
+          </div>
+
+          <div
+            v-if="popupCaregivers"
+            v-for="(caregiver, index) of listCaregivers.data"
+            @click="handleCaregivers($event, index)"
+            class="popup-list-item"
+          >
+            <div class="caregiver-avatar">
+              <img
+                v-if="caregiver.attributes.images"
+                :src="caregiver.attributes.images.small_thumbnail"
+                alt=""
+                class="caregiver-avatar"
+              />
+            </div>
+            <div>
+              <div class="popup-item-title">
+                {{ caregiver.attributes.first_name }}
+                {{ caregiver.attributes.last_name }}
+              </div>
+              <div>Lorem ipsum</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup-footer"></div>
       </div>
     </div>
   </div>
@@ -87,9 +183,9 @@ export default {
       getClinics: "get-clinics",
       userName: "XkehuCfMZ!hU%8h=",
       userPass: "QH5EV=2hNc*LFjJd",
-      dropdownClinics: false,
-      dropdownProcedures: false,
-      dropdownCaregivers: false,
+      popupClinics: false,
+      popupProcedures: false,
+      popupCaregivers: false,
       chosenClinic: "-",
       chosenProcedure: "-",
       chosenCaregiver: "-",
@@ -106,6 +202,7 @@ export default {
     console.clear();
 
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
+    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     this.initQueries();
   },
 
@@ -136,35 +233,35 @@ export default {
       });
     },
 
-    handledropdownClinics() {
-      this.dropdownClinics = !this.dropdownClinics;
+    handlepopupClinics() {
+      this.popupClinics = !this.popupClinics;
 
-      if (this.dropdownClinics) {
-        this.dropdownProcedures = false;
-        this.dropdownCaregivers = false;
+      if (this.popupClinics) {
+        this.popupProcedures = false;
+        this.popupCaregivers = false;
       }
     },
 
-    handledropdownProcedures() {
-      this.dropdownProcedures = !this.dropdownProcedures;
+    handlepopupProcedures() {
+      this.popupProcedures = !this.popupProcedures;
 
-      if (this.dropdownProcedures) {
-        this.dropdownClinics = false;
-        this.dropdownCaregivers = false;
+      if (this.popupProcedures) {
+        this.popupClinics = false;
+        this.popupCaregivers = false;
       }
     },
 
-    handledropdownCaregivers() {
-      this.dropdownCaregivers = !this.dropdownCaregivers;
+    handlepopupCaregivers() {
+      this.popupCaregivers = !this.popupCaregivers;
 
-      if (this.dropdownCaregivers) {
-        this.dropdownClinics = false;
-        this.dropdownProcedures = false;
+      if (this.popupCaregivers) {
+        this.popupClinics = false;
+        this.popupProcedures = false;
       }
     },
 
     handleClinics(event, index) {
-      this.chosenClinic = event.target.innerText;
+      this.chosenClinic = this.listClinics.data[index].attributes.clinic_name;
       this.procedureId = "";
       this.chosenProcedure = "-";
       this.caregiverId = "";
@@ -175,22 +272,51 @@ export default {
       this.getDetailedClinic(this.clinicId);
       this.updateQueryString();
       this.emitQueryString();
+
+      this.closePopup();
     },
 
     handleProcedures(event, index) {
-      this.chosenProcedure = event.target.innerText;
+      this.chosenProcedure = this.listProcedures.data[index].attributes.name;
       this.updateQueryString();
 
       this.procedureId = this.listProcedures.data[index].id;
       this.emitQueryString();
+
+      this.closePopup();
     },
 
     handleCaregivers(event, index) {
-      this.chosenCaregiver = event.target.innerText;
+      this.chosenCaregiver =
+        this.listCaregivers.data[index].attributes.first_name +
+        " " +
+        this.listCaregivers.data[index].attributes.last_name;
       this.updateQueryString();
 
       this.caregiverId = this.listCaregivers.data[index].id;
       this.emitQueryString();
+
+      this.closePopup();
+    },
+
+    closePopup() {
+      this.popupClinics = false;
+      this.popupProcedures = false;
+      this.popupCaregivers = false;
+    },
+
+    getPopupTitle() {
+      let titleLabel;
+
+      if (this.popupClinics) {
+        titleLabel = "Välj klinik/stad";
+      } else if (this.popupProcedures) {
+        titleLabel = "Välj behandling";
+      } else if (this.popupCaregivers) {
+        titleLabel = "Välj behandlare";
+      }
+
+      return titleLabel;
     },
 
     emitQueryString() {
@@ -322,12 +448,33 @@ export default {
 
       for (const data of clinic.included) {
         if (data.type === "muntra_caregiver") {
+          let imageUrls;
+
+          if (data.relationships.default_user_image.data) {
+            imageUrls = this.getImageUrls(
+              clinic,
+              data.relationships.default_user_image.data.id
+            );
+
+            data.attributes.images = imageUrls;
+          }
+
           listCaregivers.push(data);
         }
       }
 
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
+    },
+
+    getImageUrls(clinic, id) {
+      for (const data of clinic.included) {
+        if (data.type === "muntra_user_image") {
+          if (data.id === id) {
+            return data.attributes;
+          }
+        }
+      }
     },
   },
 };
@@ -336,5 +483,24 @@ export default {
 <style scoped>
 .column {
   user-select: none;
+}
+
+.list-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: silver #efe7e1;
+}
+.list-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+.list-scroll::-webkit-scrollbar-track {
+  background: #efe7e1;
+}
+.list-scroll::-webkit-scrollbar-thumb {
+  background-color: silver;
+  border-radius: 20px;
+  border: 3px solid #efe7e1;
+}
+.popup-list-item:hover .caregiver-avatar {
+  background-color: #efe7e1;
 }
 </style>

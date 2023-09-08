@@ -202,7 +202,7 @@ export default {
     console.clear();
 
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
-    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
+    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     this.initQueries();
   },
 

@@ -84,21 +84,21 @@
               />
               <div class="text-block">{{ getPopupTitle() }}</div>
             </div>
-            <!-- <font-awesome-icon
+            <font-awesome-icon
               icon="fa-solid fa-xmark"
               class="popup-close-icon"
               @click="closePopup"
-            /> -->
+            />
           </div>
           <div
             v-show="popupClinics || popupCaregivers"
             class="search-container"
           >
             <div class="search-wrapper">
-              <!-- <font-awesome-icon
+              <font-awesome-icon
                 icon="fa-solid fa-magnifying-glass"
                 class="search-icon"
-              /> -->
+              />
               <input
                 type="text"
                 class="search-input w-input"

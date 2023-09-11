@@ -125,7 +125,6 @@ a {
 }
 
 .mydentist-app {
-  background-color: #fff;
   flex-direction: column;
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;

@@ -514,15 +514,6 @@ export default {
 
       // this.getCaregiverAtLocation(clinic);
 
-      // for (const data of clinic.included) {
-      //   if (data.type === "muntra_caregiver_procedure_at_location") {
-      //     // for (const procedure of data.relationships.procedures.data) {
-      //     //   console.log(procedure);
-      //     // }
-      //     // console.log(data);
-      //   }
-      // }
-
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
 
@@ -563,18 +554,23 @@ export default {
       }
 
       const procedures = caregiver.relationships.procedures.data;
-      console.log(procedures);
+      this.getCaregiverProcedureAtLocation(clinic, procedures);
     },
 
-    getCaregiverProcedureAtLocation() {
-      // for (const procedure of data.relationships.procedures.data) {
-      // console.log(data);
-      // for (const caregiver of listCaregivers) {
-      //   if (data.relationships.caregiver.data.id === caregiver.id) {
-      //     console.log(caregiver.id);
-      //   }
-      // }
-      // }
+    getCaregiverProcedureAtLocation(clinic, procedures) {
+      for (const data of clinic.included) {
+        if (data.type === "muntra_caregiver_procedure_at_location") {
+          for (const procedure of procedures) {
+            if (data.id === procedure.id) {
+              console.log(procedure);
+            }
+          }
+
+          // console.log(data);
+        }
+      }
+
+      console.log(procedures);
     },
   },
 

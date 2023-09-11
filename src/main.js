@@ -2,7 +2,7 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import createRouter from "./router";
 
-import "./css/normalize.css";
+// import "./css/normalize.css";
 import "./css/components.css";
 import "./css/mydentist-apps.css";
 

@@ -175,7 +175,9 @@
                 {{ caregiver.attributes.first_name }}
                 {{ caregiver.attributes.last_name }}
               </div>
-              <div>Lorem ipsum</div>
+              <div>
+                {{ caregiver.attributes.role }}, {{ caregiver.attributes.city }}
+              </div>
             </div>
           </div>
           <div
@@ -197,7 +199,9 @@
                 {{ caregiver.attributes.first_name }}
                 {{ caregiver.attributes.last_name }}
               </div>
-              <div>Lorem ipsum</div>
+              <div>
+                {{ caregiver.attributes.role }}, {{ caregiver.attributes.city }}
+              </div>
             </div>
           </div>
         </div>
@@ -497,12 +501,22 @@ export default {
             data.attributes.images = imageUrls;
           }
 
+          data.attributes.role = this.getRole(
+            clinic,
+            data.relationships.role.data.id
+          );
+
+          data.attributes.city = clinic.data.attributes.clinic_city;
+
           listCaregivers.push(data);
         }
       }
 
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
+
+      console.log(clinic);
+      console.log(listCaregivers);
     },
 
     getImageUrls(clinic, id) {
@@ -511,6 +525,14 @@ export default {
           if (data.id === id) {
             return data.attributes;
           }
+        }
+      }
+    },
+
+    getRole(clinic, id) {
+      for (const data of clinic.included) {
+        if (data.type === "muntra_role" && data.id === id) {
+          return data.attributes.name;
         }
       }
     },

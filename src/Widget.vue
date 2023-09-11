@@ -100,13 +100,13 @@
                 class="search-icon"
               />
               <input
+                v-model="popupSearch"
                 type="text"
                 class="search-input w-input"
                 maxlength="256"
                 name="popup-search"
                 data-name="PopupSearch"
                 placeholder=""
-                id="popup-search"
               />
             </div>
           </div>
@@ -114,8 +114,22 @@
 
         <div class="list-scroll">
           <div
-            v-if="popupClinics"
+            v-if="popupClinics && !popupSearch"
             v-for="(clinic, index) of listClinics.data"
+            @click="handleClinics($event, index)"
+            class="popup-list-item"
+          >
+            <div>
+              <div class="popup-item-title">
+                {{ clinic.attributes.clinic_city }}
+              </div>
+              <div>{{ clinic.attributes.clinic_address_1 }}</div>
+              <div>{{ clinic.attributes.clinic_address_2 }}</div>
+            </div>
+          </div>
+          <div
+            v-if="popupClinics && popupSearch"
+            v-for="(clinic, index) of searchList"
             @click="handleClinics($event, index)"
             class="popup-list-item"
           >
@@ -143,8 +157,30 @@
           </div>
 
           <div
-            v-if="popupCaregivers"
+            v-if="popupCaregivers && !popupSearch"
             v-for="(caregiver, index) of listCaregivers.data"
+            @click="handleCaregivers($event, index)"
+            class="popup-list-item"
+          >
+            <div class="caregiver-avatar">
+              <img
+                v-if="caregiver.attributes.images"
+                :src="caregiver.attributes.images.small_thumbnail"
+                alt=""
+                class="caregiver-avatar"
+              />
+            </div>
+            <div>
+              <div class="popup-item-title">
+                {{ caregiver.attributes.first_name }}
+                {{ caregiver.attributes.last_name }}
+              </div>
+              <div>Lorem ipsum</div>
+            </div>
+          </div>
+          <div
+            v-if="popupCaregivers && popupSearch"
+            v-for="(caregiver, index) of searchList"
             @click="handleCaregivers($event, index)"
             class="popup-list-item"
           >
@@ -195,6 +231,8 @@ export default {
       listClinics: [],
       listProcedures: [],
       listCaregivers: [],
+      popupSearch: "",
+      searchList: [],
     };
   },
 
@@ -202,7 +240,7 @@ export default {
     console.clear();
 
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
-    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
+    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     this.initQueries();
   },
 
@@ -474,6 +512,44 @@ export default {
             return data.attributes;
           }
         }
+      }
+    },
+  },
+
+  watch: {
+    popupSearch() {
+      if (this.popupClinics) {
+        const searchString = this.popupSearch;
+        const regex = new RegExp(searchString, "i"); // case insensitive
+        const searchList = [];
+
+        for (const clinic of this.listClinics.data) {
+          if (regex.test(clinic.attributes.clinic_city)) {
+            searchList.push(clinic);
+          } else if (regex.test(clinic.attributes.clinic_address_1)) {
+            searchList.push(clinic);
+          } else if (regex.test(clinic.attributes.clinic_address_2)) {
+            searchList.push(clinic);
+          }
+        }
+
+        this.searchList = searchList;
+      }
+
+      if (this.popupCaregivers) {
+        const searchString = this.popupSearch;
+        const regex = new RegExp(searchString, "i"); // case insensitive
+        const searchList = [];
+
+        for (const caregiver of this.listCaregivers.data) {
+          if (regex.test(caregiver.attributes.first_name)) {
+            searchList.push(caregiver);
+          } else if (regex.test(caregiver.attributes.last_name)) {
+            searchList.push(caregiver);
+          }
+        }
+
+        this.searchList = searchList;
       }
     },
   },

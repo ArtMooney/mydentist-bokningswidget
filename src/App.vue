@@ -1,3 +1,7 @@
+<style scoped>
+@import "./css/components.css";
+</style>
+
 <template>
   <Widget @queryparams="updateValues" />
 

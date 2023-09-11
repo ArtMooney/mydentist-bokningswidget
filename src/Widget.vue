@@ -1,3 +1,7 @@
+<style scoped>
+@import "./css/components.css";
+</style>
+
 <template>
   <div class="mydentist-app">
     <div
@@ -512,7 +516,7 @@ export default {
         }
       }
 
-      // this.getCaregiverAtLocation(clinic);
+      this.getCaregiverAtLocation(clinic);
 
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;

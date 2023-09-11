@@ -2,8 +2,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import createRouter from "./router";
 
-// import "./css/normalize.css";
-import "./css/components.css";
 import "./css/mydentist-apps.css";
 
 import { library } from "@fortawesome/fontawesome-svg-core";

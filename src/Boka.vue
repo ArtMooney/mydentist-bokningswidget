@@ -1,3 +1,7 @@
+<style scoped>
+@import "./css/components.css";
+</style>
+
 <template>
   <div v-if="muntraWidget" class="mydentist-app">
     <div

@@ -244,7 +244,7 @@ export default {
     console.clear();
 
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
-    console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
+    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     this.initQueries();
   },
 
@@ -512,11 +512,23 @@ export default {
         }
       }
 
+      // this.getCaregiverAtLocation(clinic);
+
+      // for (const data of clinic.included) {
+      //   if (data.type === "muntra_caregiver_procedure_at_location") {
+      //     // for (const procedure of data.relationships.procedures.data) {
+      //     //   console.log(procedure);
+      //     // }
+      //     // console.log(data);
+      //   }
+      // }
+
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
 
-      console.log(clinic);
-      console.log(listCaregivers);
+      // console.log(clinic);
+      // console.log(listProcedures);
+      // console.log(listCaregivers);
     },
 
     getImageUrls(clinic, id) {
@@ -535,6 +547,34 @@ export default {
           return data.attributes.name;
         }
       }
+    },
+
+    getCaregiverAtLocation(clinic) {
+      const caregiverId = "4953";
+      let caregiver;
+
+      for (const data of clinic.included) {
+        if (
+          data.type === "muntra_caregiver_at_location" &&
+          data.relationships.caregiver.data.id === caregiverId
+        ) {
+          caregiver = data;
+        }
+      }
+
+      const procedures = caregiver.relationships.procedures.data;
+      console.log(procedures);
+    },
+
+    getCaregiverProcedureAtLocation() {
+      // for (const procedure of data.relationships.procedures.data) {
+      // console.log(data);
+      // for (const caregiver of listCaregivers) {
+      //   if (data.relationships.caregiver.data.id === caregiver.id) {
+      //     console.log(caregiver.id);
+      //   }
+      // }
+      // }
     },
   },
 

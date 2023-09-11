@@ -787,7 +787,7 @@ a {
   }
 }
 
-@font-face {
+/* @font-face {
   font-family: "Fororounded";
   src: url("../fonts/ForoRounded-Bold.otf") format("opentype");
   font-weight: 700;
@@ -814,4 +814,4 @@ a {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-}
+} */

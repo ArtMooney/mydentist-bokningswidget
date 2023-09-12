@@ -14,4 +14,4 @@ library.add(faXmark, faMagnifyingGlass);
 createApp(App)
   .use(createRouter())
   .component("font-awesome-icon", FontAwesomeIcon)
-  .mount("#app");
+  .mount("#mydentist-bokningswidget");

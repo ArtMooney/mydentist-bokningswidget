@@ -11,9 +11,6 @@
 </template>
 
 <script>
-import "./css/components.css";
-import "./css/mydentist-apps.css";
-
 import Widget from "./Widget.vue";
 
 export default {

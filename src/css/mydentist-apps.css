@@ -126,6 +126,7 @@ a {
 
 .mydentist-app {
   width: 100%;
+  text-align: left;
   flex-direction: column;
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -405,9 +406,9 @@ a {
 
 .popup-item-title {
   color: #9b1373;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  line-height: 1.5rem;
+  line-height: 1.7rem;
 }
 
 .popup-title-icon-wrapper {
@@ -607,7 +608,8 @@ a {
     padding-left: 1rem;
   }
 
-  .popup-top-menu {
+  .popup-top-menu,
+  .popup-item-title {
     font-size: 1rem;
     line-height: 1.5rem;
   }

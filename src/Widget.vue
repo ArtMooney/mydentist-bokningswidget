@@ -1,3 +1,8 @@
+<style scoped>
+@import "./css/components.css";
+@import "./css/mydentist-apps.css";
+</style>
+
 <template>
   <div class="mydentist-app">
     <div

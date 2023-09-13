@@ -518,7 +518,7 @@ export default {
         }
       }
 
-      this.getCaregiverAtLocation(clinic);
+      // this.getCaregiverAtLocation(clinic);
 
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
@@ -572,7 +572,7 @@ export default {
             }
           }
 
-          // console.log(data);
+          console.log(data);
         }
       }
 

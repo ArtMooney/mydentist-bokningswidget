@@ -1,7 +1,3 @@
-<style scoped>
-@import "./css/components.css";
-</style>
-
 <template>
   <Widget @queryparams="updateValues" />
 
@@ -15,6 +11,9 @@
 </template>
 
 <script>
+import "./css/components.css";
+import "./css/mydentist-apps.css";
+
 import Widget from "./Widget.vue";
 
 export default {

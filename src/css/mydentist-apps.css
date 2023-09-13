@@ -335,7 +335,7 @@ a {
 }
 
 .list-popup-wrapper {
-  z-index: 12;
+  z-index: 2147483647;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   justify-content: center;

@@ -1,10 +1,10 @@
 <div id="mydentist-bokningswidget"></div>
 
 <script>
-  const appUrl =
+  const bokningswidgetUrl =
     "https://cdn.jsdelivr.net/gh/ArtMooney/mydentist-bokningswidget@v0.0.1/dist";
 
-  fetch(appUrl + "/" + "index.html")
+  fetch(bokningswidgetUrl + "/" + "index.html")
     .then((response) => response.text())
     .then((html) => {
       const parser = new DOMParser();
@@ -18,7 +18,7 @@
       const scriptElement = document.createElement("script");
       scriptElement.type = "module";
       scriptElement.textContent = `
-        import('${appUrl + scriptSrc}')
+        import('${bokningswidgetUrl + scriptSrc}')
           .catch((error) => {
             console.error('Error importing the module:', error);
           });
@@ -26,7 +26,7 @@
 
       const linkElement = document.createElement("link");
       linkElement.rel = "stylesheet";
-      linkElement.href = appUrl + cssHref;
+      linkElement.href = bokningswidgetUrl + cssHref;
 
       document.head.appendChild(scriptElement);
       document.head.appendChild(linkElement);

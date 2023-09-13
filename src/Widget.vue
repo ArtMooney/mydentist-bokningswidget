@@ -1,7 +1,3 @@
-<style scoped>
-@import "./css/components.css";
-</style>
-
 <template>
   <div class="mydentist-app">
     <div
@@ -88,8 +84,8 @@
               />
               <div class="text-block">{{ getPopupTitle() }}</div>
             </div>
-            <font-awesome-icon
-              icon="fa-solid fa-xmark"
+            <xmark
+              style="color: white"
               class="popup-close-icon"
               @click="closePopup"
             />
@@ -99,10 +95,7 @@
             class="search-container"
           >
             <div class="search-wrapper">
-              <font-awesome-icon
-                icon="fa-solid fa-magnifying-glass"
-                class="search-icon"
-              />
+              <magnifyingGlass class="search-icon" />
               <input
                 v-model="popupSearch"
                 type="text"
@@ -217,8 +210,12 @@
 </template>
 
 <script>
+import xmark from "./images/xmark.vue";
+import magnifyingGlass from "./images/magnifying-glass.vue";
+
 export default {
   name: "Home",
+  components: { xmark, magnifyingGlass },
 
   data() {
     return {
@@ -575,6 +572,10 @@ export default {
       }
 
       console.log(procedures);
+    },
+
+    base64svg(image) {
+      return `data:image/svg+xml;base64,${btoa(image)}`;
     },
   },
 

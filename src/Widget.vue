@@ -158,58 +158,70 @@
             </div>
           </div>
 
-          <div
-            v-if="popupCaregivers && !popupSearch"
-            v-for="(caregiver, index) of listCaregivers.data"
-            @click="
-              handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
-            "
-            class="popup-list-item"
-          >
-            <div class="caregiver-avatar">
-              <img
-                v-if="caregiver.attributes.images"
-                :src="caregiver.attributes.images.small_thumbnail"
-                alt=""
-                class="caregiver-avatar"
-              />
-            </div>
-            <div>
-              <div class="popup-item-title">
-                {{ caregiver.attributes.first_name }}
-                {{ caregiver.attributes.last_name }}
+          <template v-for="(caregiver, index) of listCaregivers.data">
+            <div
+              v-if="
+                popupCaregivers &&
+                !popupSearch &&
+                isProcedure(listCaregivers.data.indexOf(caregiver))
+              "
+              @click="
+                handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
+              "
+              class="popup-list-item"
+            >
+              <div class="caregiver-avatar">
+                <img
+                  v-if="caregiver.attributes.images"
+                  :src="caregiver.attributes.images.small_thumbnail"
+                  alt=""
+                  class="caregiver-avatar"
+                />
               </div>
               <div>
-                {{ caregiver.attributes.role }}, {{ caregiver.attributes.city }}
+                <div class="popup-item-title">
+                  {{ caregiver.attributes.first_name }}
+                  {{ caregiver.attributes.last_name }}
+                </div>
+                <div>
+                  {{ caregiver.attributes.role }},
+                  {{ caregiver.attributes.city }}, {{ procedureId }}
+                </div>
               </div>
             </div>
-          </div>
-          <div
-            v-if="popupCaregivers && popupSearch"
-            v-for="(caregiver, index) of searchList"
-            @click="
-              handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
-            "
-            class="popup-list-item"
-          >
-            <div class="caregiver-avatar">
-              <img
-                v-if="caregiver.attributes.images"
-                :src="caregiver.attributes.images.small_thumbnail"
-                alt=""
-                class="caregiver-avatar"
-              />
-            </div>
-            <div>
-              <div class="popup-item-title">
-                {{ caregiver.attributes.first_name }}
-                {{ caregiver.attributes.last_name }}
+          </template>
+          <template v-for="(caregiver, index) of searchList">
+            <div
+              v-if="
+                popupCaregivers &&
+                popupSearch &&
+                isProcedure(listCaregivers.data.indexOf(caregiver))
+              "
+              @click="
+                handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
+              "
+              class="popup-list-item"
+            >
+              <div class="caregiver-avatar">
+                <img
+                  v-if="caregiver.attributes.images"
+                  :src="caregiver.attributes.images.small_thumbnail"
+                  alt=""
+                  class="caregiver-avatar"
+                />
               </div>
               <div>
-                {{ caregiver.attributes.role }}, {{ caregiver.attributes.city }}
+                <div class="popup-item-title">
+                  {{ caregiver.attributes.first_name }}
+                  {{ caregiver.attributes.last_name }}
+                </div>
+                <div>
+                  {{ caregiver.attributes.role }},
+                  {{ caregiver.attributes.city }}
+                </div>
               </div>
             </div>
-          </div>
+          </template>
         </div>
 
         <div class="popup-footer"></div>
@@ -530,10 +542,6 @@ export default {
 
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
-
-      // console.log("CLINIC DETAILED", clinic);
-      // console.log("LIST PROCEDURES", listProcedures);
-      // console.log("LIST CAREGIVERS", listCaregivers);
     },
 
     getImageUrls(clinic, id) {
@@ -583,6 +591,21 @@ export default {
       }
 
       return relatedProcedures;
+    },
+
+    isProcedure(index) {
+      let isProcedureWithCaregiver = false;
+
+      for (const procedure of this.listCaregivers.data[index].attributes
+        .procedures) {
+        if (procedure === this.procedureId) {
+          isProcedureWithCaregiver = true;
+        }
+      }
+
+      if (!this.procedureId) isProcedureWithCaregiver = true;
+
+      return isProcedureWithCaregiver;
     },
   },
 

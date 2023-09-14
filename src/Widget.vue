@@ -399,7 +399,10 @@ export default {
     handleBooking() {
       const queryString = this.getQueryString();
 
-      this.$router.push("/boka" + queryString);
+      // this.$router.push("/boka" + queryString);
+
+      const url = "/boka" + queryString;
+      window.location.href = url;
     },
 
     updateQueryString() {
@@ -521,9 +524,9 @@ export default {
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
 
-      console.log("CLINIC DETAILED", clinic);
-      console.log("LIST PROCEDURES", listProcedures);
-      console.log("LIST CAREGIVERS", listCaregivers);
+      // console.log("CLINIC DETAILED", clinic);
+      // console.log("LIST PROCEDURES", listProcedures);
+      // console.log("LIST CAREGIVERS", listCaregivers);
     },
 
     getImageUrls(clinic, id) {

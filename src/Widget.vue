@@ -117,7 +117,8 @@
           <div
             v-if="popupClinics && !popupSearch"
             v-for="(clinic, index) of listClinics.data"
-            @click="handleClinics($event, index)"
+            @click="handleClinics($event, listClinics.data.indexOf(clinic))"
+            key="index"
             class="popup-list-item"
           >
             <div>
@@ -131,7 +132,7 @@
           <div
             v-if="popupClinics && popupSearch"
             v-for="(clinic, index) of searchList"
-            @click="handleClinics($event, index)"
+            @click="handleClinics($event, listClinics.data.indexOf(clinic))"
             class="popup-list-item"
           >
             <div>

@@ -19,14 +19,6 @@
       scriptElement.type = "module";
       scriptElement.textContent = `
         import('${bokningswidgetUrl + scriptSrc}')
-          .then((module) => {
-            module.default({
-              el: '#mydentist-bokningswidget',
-              props: {
-                mode: 'vertical',
-              }
-            });
-          })
           .catch((error) => {
             console.error('Error importing the module:', error);
           });

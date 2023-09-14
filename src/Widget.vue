@@ -83,7 +83,6 @@
             <div class="popup-title-wrapper">
               <img
                 src="./images/mydentist_favicon.png"
-                loading="lazy"
                 alt=""
                 class="popup-tooth-icon"
               />
@@ -513,19 +512,18 @@ export default {
           );
 
           data.attributes.city = clinic.data.attributes.clinic_city;
+          data.attributes.procedures = this.getProcedures(clinic, data.id);
 
           listCaregivers.push(data);
         }
       }
 
-      // this.getCaregiverAtLocation(clinic);
-
       this.listProcedures.data = listProcedures;
       this.listCaregivers.data = listCaregivers;
 
-      // console.log(clinic);
-      // console.log(listProcedures);
-      // console.log(listCaregivers);
+      console.log("CLINIC DETAILED", clinic);
+      console.log("LIST PROCEDURES", listProcedures);
+      console.log("LIST CAREGIVERS", listCaregivers);
     },
 
     getImageUrls(clinic, id) {
@@ -546,41 +544,35 @@ export default {
       }
     },
 
-    getCaregiverAtLocation(clinic) {
-      const caregiverId = "4953";
-      let caregiver;
+    getProcedures(clinic, id) {
+      const caregiverLocations = [];
+      const relatedProcedures = [];
 
-      for (const data of clinic.included) {
-        if (
-          data.type === "muntra_caregiver_at_location" &&
-          data.relationships.caregiver.data.id === caregiverId
-        ) {
-          caregiver = data;
-        }
-      }
-
-      const procedures = caregiver.relationships.procedures.data;
-      this.getCaregiverProcedureAtLocation(clinic, procedures);
-    },
-
-    getCaregiverProcedureAtLocation(clinic, procedures) {
       for (const data of clinic.included) {
         if (data.type === "muntra_caregiver_procedure_at_location") {
-          for (const procedure of procedures) {
-            if (data.id === procedure.id) {
-              console.log(procedure);
-            }
-          }
-
-          console.log(data);
+          caregiverLocations.push(data);
         }
       }
 
-      console.log(procedures);
-    },
+      for (const data of clinic.included) {
+        if (data.type === "muntra_caregiver_at_location") {
+          if (data.relationships.caregiver.data.id === id) {
+            if (data.relationships.procedures.data) {
+              for (const procedure of data.relationships.procedures.data) {
+                for (const caregiverLocation of caregiverLocations) {
+                  if (procedure.id === caregiverLocation.id) {
+                    relatedProcedures.push(
+                      caregiverLocation.relationships.procedure.data.id
+                    );
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 
-    base64svg(image) {
-      return `data:image/svg+xml;base64,${btoa(image)}`;
+      return relatedProcedures;
     },
   },
 

@@ -17,12 +17,25 @@ export default {
   name: "App",
   components: { Widget },
 
+  props: {
+    mode: {
+      type: String,
+      default: "horizontal",
+    },
+  },
+
   data() {
     return {
       clinicId: null,
       procedureId: null,
       caregiverId: null,
     };
+  },
+
+  mounted() {
+    setTimeout(() => {
+      console.log("MODE", this.mode);
+    }, 1000);
   },
 
   methods: {

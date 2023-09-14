@@ -161,7 +161,9 @@
           <div
             v-if="popupCaregivers && !popupSearch"
             v-for="(caregiver, index) of listCaregivers.data"
-            @click="handleCaregivers($event, index)"
+            @click="
+              handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
+            "
             class="popup-list-item"
           >
             <div class="caregiver-avatar">
@@ -185,7 +187,9 @@
           <div
             v-if="popupCaregivers && popupSearch"
             v-for="(caregiver, index) of searchList"
-            @click="handleCaregivers($event, index)"
+            @click="
+              handleCaregivers($event, listCaregivers.data.indexOf(caregiver))
+            "
             class="popup-list-item"
           >
             <div class="caregiver-avatar">
@@ -314,6 +318,7 @@ export default {
       this.chosenProcedure = "-";
       this.caregiverId = "";
       this.chosenCaregiver = "-";
+      this.popupSearch = "";
       this.updateQueryString();
 
       this.clinicId = this.listClinics.data[index].id;
@@ -335,6 +340,7 @@ export default {
     },
 
     handleCaregivers(event, index) {
+      this.popupSearch = "";
       this.chosenCaregiver =
         this.listCaregivers.data[index].attributes.first_name +
         " " +

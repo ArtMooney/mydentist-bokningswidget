@@ -438,21 +438,21 @@ export default {
     handleBooking() {
       const queryString = this.getQueryString();
 
-      // this.$router.push("/boka" + queryString);
+      // this.$router.push("/boka-tid" + queryString);
 
-      const url = "/boka" + queryString;
+      const url = "/boka-tid" + queryString;
       window.location.href = url;
     },
 
     updateQueryString() {
       const url = window.location.href;
-      const searchString = "/boka";
+      const searchString = "/boka-tid";
 
-      // only update querystring if we are on the /boka page
+      // only update querystring if we are on the /boka-tid page
       if (url.indexOf(searchString) !== -1) {
         const queryString = this.getQueryString();
 
-        history.pushState({}, "", "/boka" + queryString);
+        history.pushState({}, "", "/boka-tid" + queryString);
       }
     },
 

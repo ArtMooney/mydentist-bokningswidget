@@ -121,8 +121,21 @@ export default {
   display: none;
 }
 
+.muntra-widget {
+  width: 100%;
+  border: 0px solid transparent;
+  border-radius: 0px;
+}
+
 .muntra-widget.without-modal {
   width: 80%;
+  border-radius: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sc-hKFyIo.ilHOdR.muntra-content-container {
+  width: 100%;
 }
 
 .muntra-widget-modal-container-content {
@@ -210,6 +223,16 @@ export default {
 @media screen and (max-width: 991px) {
   .muntra-widget.without-modal {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 774px) {
+  .sc-fKgIGh.duMawZ.muntra-widget-modal {
+    margin: 0px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    min-height: auto;
+    border-radius: 0px;
   }
 }
 

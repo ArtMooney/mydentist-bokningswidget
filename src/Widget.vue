@@ -158,6 +158,19 @@
             </div>
           </div>
 
+          <div
+            v-if="
+              popupCaregivers && (chosenProcedure !== '-' || popupSearch !== '')
+            "
+            @click="allCaregivers"
+            class="popup-list-item"
+          >
+            <div class="caregiver-avatar"></div>
+            <div>
+              <div class="popup-item-title">Alla behandlare</div>
+              <div>Visa alla behandlare på kliniken</div>
+            </div>
+          </div>
           <template v-for="(caregiver, index) of listCaregivers.data">
             <div
               v-if="
@@ -190,6 +203,7 @@
               </div>
             </div>
           </template>
+
           <template v-for="(caregiver, index) of searchList">
             <div
               v-if="
@@ -363,6 +377,12 @@ export default {
       this.emitQueryString();
 
       this.closePopup();
+    },
+
+    allCaregivers() {
+      this.popupSearch = "";
+      this.chosenProcedure = "-";
+      this.procedureId = "";
     },
 
     closePopup() {

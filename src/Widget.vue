@@ -630,11 +630,17 @@ export default {
         window.innerWidth - document.documentElement.clientWidth;
 
       document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+      console.log(window.location.hostname);
+      // document.getElementById(
+      //   "_header-3-22"
+      // ).style.paddingRight = `${scrollbarWidth}px`;
       document.body.style.overflow = "hidden";
     },
 
     enableScroll() {
       document.body.style.paddingRight = "";
+      // document.getElementById("_header-3-22").style.paddingRight = "";
       document.body.style.overflow = "auto";
     },
   },
@@ -685,7 +691,7 @@ export default {
     },
 
     popupProcedures() {
-      if (this.popupProcedures) {
+      if (this.popupProcedures && this.listProcedures.data) {
         this.disableScroll();
       } else {
         this.enableScroll();
@@ -693,7 +699,7 @@ export default {
     },
 
     popupCaregivers() {
-      if (this.popupCaregivers) {
+      if (this.popupCaregivers && this.listCaregivers.data) {
         this.disableScroll();
       } else {
         this.enableScroll();

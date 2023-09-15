@@ -631,10 +631,16 @@ export default {
 
       document.body.style.paddingRight = `${scrollbarWidth}px`;
 
-      console.log(window.location.hostname);
-      // document.getElementById(
-      //   "_header-3-22"
-      // ).style.paddingRight = `${scrollbarWidth}px`;
+      if (
+        window.location.hostname !== "localhost" &&
+        window.location.hostname !==
+          "https://mydentist-bokningswidget.netlify.app/"
+      ) {
+        document.getElementById(
+          "_header-3-22"
+        ).style.paddingRight = `${scrollbarWidth}px`;
+      }
+
       document.body.style.overflow = "hidden";
     },
 

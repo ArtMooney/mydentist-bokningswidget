@@ -7,7 +7,7 @@ a {
   text-decoration: underline;
 }
 
-.column {
+.bokningswidget-column {
   outline-offset: 0px;
   color: #8f8f8f;
   background-color: #fff;
@@ -24,12 +24,12 @@ a {
   position: relative;
 }
 
-.column.left {
+.bokningswidget-column.left {
   border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem;
 }
 
-.column.right {
+.bokningswidget-column.right {
   color: #fff;
   text-align: center;
   text-transform: uppercase;
@@ -41,7 +41,7 @@ a {
   line-height: 1.5rem;
 }
 
-.column.list-popup {
+.bokningswidget-column.list-popup {
   max-height: 100%;
   max-width: 30rem;
   min-width: 30rem;
@@ -54,7 +54,7 @@ a {
   overflow: hidden;
 }
 
-.column.dropdown {
+.bokningswidget-column.dropdown {
   z-index: 10;
   max-height: 16rem;
   min-width: 50%;
@@ -519,17 +519,17 @@ a {
 }
 
 @media screen and (max-width: 991px) {
-  .column {
+  .bokningswidget-column {
     font-size: 0.7rem;
     line-height: 1.2rem;
   }
 
-  .column.right {
+  .bokningswidget-column.right {
     font-size: 0.8rem;
     line-height: 1.3rem;
   }
 
-  .column.dropdown {
+  .bokningswidget-column.dropdown {
     max-height: 12rem;
   }
 
@@ -566,7 +566,7 @@ a {
 }
 
 @media screen and (max-width: 767px) {
-  .column.list-popup {
+  .bokningswidget-column.list-popup {
     max-width: 100%;
     min-width: 100%;
     padding-left: 1rem;
@@ -623,23 +623,23 @@ a {
 }
 
 @media screen and (max-width: 479px) {
-  .column {
+  .bokningswidget-column {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
-  .column.left {
+  .bokningswidget-column.left {
     border-top-right-radius: 1.2rem;
     border-bottom-left-radius: 0;
   }
 
-  .column.right {
+  .bokningswidget-column.right {
     border-top-right-radius: 0;
     border-bottom-left-radius: 1.2rem;
   }
 
-  .column.list-popup,
-  .column.dropdown {
+  .bokningswidget-column.list-popup,
+  .bokningswidget-column.dropdown {
     bottom: auto;
   }
 

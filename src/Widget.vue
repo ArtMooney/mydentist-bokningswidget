@@ -12,7 +12,7 @@
       <div
         @click.stop="handlepopupClinics"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
-        class="column left"
+        class="bokningswidget-column left"
       >
         <div class="hover-background"></div>
         <div>Klinik / Ort</div>
@@ -21,12 +21,12 @@
       <div
         @click="handlepopupProcedures"
         id="w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe"
-        class="column"
+        class="bokningswidget-column"
       >
         <div class="hover-background"></div>
         <div>Behandling</div>
         <div class="text-large">{{ chosenProcedure }}</div>
-        <div v-show="popupProcedures" class="column dropdown">
+        <div v-show="popupProcedures" class="bokningswidget-column dropdown">
           <div
             v-show="popupProcedures && !listProcedures.data"
             class="list-item"
@@ -38,12 +38,12 @@
       <div
         @click="handlepopupCaregivers"
         id="w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe"
-        class="column"
+        class="bokningswidget-column"
       >
         <div class="hover-background"></div>
         <div>Behandlare</div>
         <div class="text-large">{{ chosenCaregiver }}</div>
-        <div v-show="popupCaregivers" class="column dropdown">
+        <div v-show="popupCaregivers" class="bokningswidget-column dropdown">
           <div
             v-if="listCaregivers.data"
             v-for="(caregiver, index) of listCaregivers.data"
@@ -60,7 +60,7 @@
       </div>
       <div
         id="w-node-_15d05f01-d5c1-4387-6d10-54988da43617-1e7ebdbe"
-        class="column right"
+        class="bokningswidget-column right"
         @click="handleBooking"
       >
         <div class="hover-layer">
@@ -77,7 +77,7 @@
       "
       class="list-popup-wrapper"
     >
-      <div class="column list-popup">
+      <div class="bokningswidget-column list-popup">
         <div class="popup-top-menu">
           <div class="popup-title-icon-wrapper">
             <div class="popup-title-wrapper">
@@ -277,10 +277,7 @@ export default {
   },
 
   async created() {
-    console.clear();
-
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
-    // console.log("CLINICS", JSON.parse(JSON.stringify(this.listClinics)));
     this.initQueries();
   },
 

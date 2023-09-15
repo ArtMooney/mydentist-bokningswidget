@@ -607,6 +607,19 @@ export default {
 
       return isProcedureWithCaregiver;
     },
+
+    disableScroll() {
+      const scrollbarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+      document.body.style.overflow = "hidden";
+    },
+
+    enableScroll() {
+      document.body.style.paddingRight = "";
+      document.body.style.overflow = "auto";
+    },
   },
 
   watch: {
@@ -643,6 +656,30 @@ export default {
         }
 
         this.searchList = searchList;
+      }
+    },
+
+    popupClinics() {
+      if (this.popupClinics) {
+        this.disableScroll();
+      } else {
+        this.enableScroll();
+      }
+    },
+
+    popupProcedures() {
+      if (this.popupProcedures) {
+        this.disableScroll();
+      } else {
+        this.enableScroll();
+      }
+    },
+
+    popupCaregivers() {
+      if (this.popupCaregivers) {
+        this.disableScroll();
+      } else {
+        this.enableScroll();
       }
     },
   },

@@ -81,11 +81,7 @@
         <div class="popup-top-menu">
           <div class="popup-title-icon-wrapper">
             <div class="popup-title-wrapper">
-              <img
-                src="./images/mydentist_favicon.png"
-                alt=""
-                class="popup-tooth-icon"
-              />
+              <mydentistIcon style="color: white" class="popup-tooth-icon" />
               <div class="text-block">{{ getPopupTitle() }}</div>
             </div>
             <xmark
@@ -247,10 +243,11 @@
 <script>
 import xmark from "./images/xmark.vue";
 import magnifyingGlass from "./images/magnifying-glass.vue";
+import mydentistIcon from "./images/mydentist-icon.vue";
 
 export default {
   name: "Home",
-  components: { xmark, magnifyingGlass },
+  components: { xmark, magnifyingGlass, mydentistIcon },
 
   data() {
     return {

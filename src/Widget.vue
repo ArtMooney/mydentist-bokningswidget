@@ -150,7 +150,7 @@
               <div class="popup-item-title">
                 {{ procedure.attributes.name }}
               </div>
-              <div>Lorem ipsum</div>
+              <div>{{ procedure.attributes.beskrivning }}</div>
             </div>
           </div>
 

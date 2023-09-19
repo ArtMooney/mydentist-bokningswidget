@@ -630,8 +630,7 @@ export default {
 
       if (
         window.location.hostname !== "localhost" &&
-        window.location.hostname !==
-          "https://mydentist-bokningswidget.netlify.app/"
+        window.location.hostname !== "mydentist-bokningswidget.netlify.app"
       ) {
         document.getElementById(
           "_header-3-22"

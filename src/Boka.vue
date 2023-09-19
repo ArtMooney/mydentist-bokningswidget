@@ -118,7 +118,7 @@ export default {
 
 <style>
 .muntra-widget-modal-header {
-  display: none;
+  display: none !important;
 }
 
 .muntra-widget {

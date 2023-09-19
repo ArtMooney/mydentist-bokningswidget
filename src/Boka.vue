@@ -63,7 +63,6 @@ export default {
       muntraWidget: false,
       timeoutId: null,
       parameterChanged: false,
-      testNumber: "177",
     };
   },
 
@@ -117,7 +116,7 @@ export default {
 </script>
 
 <style>
-.muntra-widget-modal-header {
+.sc-iwaifL.cXjcqz.muntra-widget-modal-header {
   display: none !important;
 }
 

@@ -39,7 +39,7 @@
     <!-- to keep the css classes for the external widget from being purged -->
     <div
       style="display: none"
-      class="muntra-widget-modal-header muntra-widget muntra-widget.without-modal sc-hKFyIo ilHOdR muntra-content-container muntra-widget-modal-container-content gDGDod bhjKRs cVQxmd sc-hBMVcZ sc-hBMVcZ dGarFN muntra-widget-modal-content-wrapper gwofgg[disabled] svg cCGdyJ svg sc-ArjOu jDwODi sc-fujyUd cWWTbR sc-fFSRdu juCHze sc-fFSRdu sc-cTJmaU.juCHze exOFdF sc-fFSRdu sc-jNnnWF juCHze fCQiqA sc-fujyUd sc-hiKfjK cWWTbR eTyHFg sc-fKgIGh duMawZ muntra-widget-modal"
+      class="muntra-widget-modal-header muntra-widget muntra-widget without-modal sc-hKFyIo ilHOdR muntra-content-container muntra-widget-modal-container-content gDGDod bhjKRs cVQxmd sc-hBMVcZ sc-hBMVcZ dGarFN muntra-widget-modal-content-wrapper gwofgg[disabled] svg cCGdyJ svg sc-ArjOu jDwODi sc-fFSRdu juCHze sc-fujyUd cWWTbR sc-fFSRdu sc-cTJmaU juCHze exOFdF sc-fFSRdu sc-jNnnWF juCHze fCQiqA sc-fujyUd sc-hiKfjK cWWTbR eTyHFg muntra-widget without-modal sc-fKgIGh duMawZ muntra-widget-modal sc-fujyUd cWWTbR sc-ArjOu jDwODi sc-hBMVcZ dGarFN"
     ></div>
   </div>
 </template>

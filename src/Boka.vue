@@ -192,12 +192,17 @@ export default {
   margin-top: 2px;
 }
 
+.sc-fFSRdu.juCHze {
+  display: flex;
+  flex-flow: nowrap;
+}
+
 .sc-fujyUd.cWWTbR {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.4rem;
-  text-align: center;
-  word-wrap: break-word !important;
-  overflow-wrap: break-word !important;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .sc-fFSRdu.sc-cTJmaU.juCHze.exOFdF {

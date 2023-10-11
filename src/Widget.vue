@@ -155,7 +155,7 @@
           </div>
 
           <div
-            v-if="popupCaregivers && chosenProcedure !== '-'"
+            v-if="popupCaregivers"
             @click="allCaregivers"
             class="popup-list-item"
           >
@@ -373,9 +373,10 @@ export default {
 
     allCaregivers() {
       this.popupSearch = "";
-      this.chosenProcedure = "-";
-      this.procedureId = "";
+      this.chosenCaregiver = "-";
+      this.caregiverId = "";
 
+      this.emitQueryString();
       this.updateQueryString();
       this.closePopup();
     },

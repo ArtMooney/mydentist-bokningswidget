@@ -200,13 +200,6 @@ export default {
   overflow-wrap: break-word !important;
 }
 
-.sc-fFSRdu.juCHze {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
 .sc-fFSRdu.sc-cTJmaU.juCHze.exOFdF {
   display: flex;
   flex-direction: row;

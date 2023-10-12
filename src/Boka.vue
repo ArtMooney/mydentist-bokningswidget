@@ -93,12 +93,18 @@ export default {
   watch: {
     clinicId() {
       this.parameterChanged = !this.parameterChanged;
+
+      console.log("CLINIC", this.clinicId);
     },
     procedureId() {
       this.parameterChanged = !this.parameterChanged;
+
+      console.log("PROCEDURE", this.procedureId);
     },
     caregiverId() {
       this.parameterChanged = !this.parameterChanged;
+
+      console.log("CAREGIVER", this.caregiverId);
     },
 
     parameterChanged() {

@@ -67,6 +67,12 @@
           <div>Visa lediga tider</div>
         </div>
       </div>
+
+      <div class="clean-filtering-wrapper">
+        <div @click="cleanFiltering" class="text-clean-filtering">
+          Rensa filtrering
+        </div>
+      </div>
     </div>
 
     <div
@@ -161,7 +167,9 @@
           >
             <div class="caregiver-avatar"></div>
             <div>
-              <div class="popup-item-title">Alla behandlare</div>
+              <div ref="allCaregiversLabel" class="popup-item-title">
+                Alla behandlare
+              </div>
               <div>Visa alla behandlare på kliniken</div>
             </div>
           </div>
@@ -375,6 +383,8 @@ export default {
       this.popupSearch = "";
       this.chosenCaregiver = "-";
       this.caregiverId = "";
+
+      this.chosenCaregiver = this.$refs.allCaregiversLabel.innerText;
 
       this.emitQueryString();
       this.updateQueryString();
@@ -648,6 +658,19 @@ export default {
       document.body.style.paddingRight = "";
       // document.getElementById("_header-3-22").style.paddingRight = "";
       document.body.style.overflow = "auto";
+    },
+
+    cleanFiltering() {
+      this.chosenClinic = "-";
+      this.chosenProcedure = "-";
+      this.chosenCaregiver = "-";
+      this.clinicId = "";
+      this.procedureId = "";
+      this.caregiverId = "";
+      this.popupSearch = "";
+
+      this.updateQueryString();
+      this.emitQueryString();
     },
   },
 

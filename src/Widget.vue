@@ -668,6 +668,8 @@ export default {
       this.procedureId = "";
       this.caregiverId = "";
       this.popupSearch = "";
+      this.listProcedures = [];
+      this.listCaregivers = [];
 
       this.updateQueryString();
       this.emitQueryString();

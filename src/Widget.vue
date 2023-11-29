@@ -775,6 +775,8 @@ export default {
 </script>
 
 <style>
+.clean-filtering-wrapper,
+.bokningswidget-wrapper,
 .bokningswidget-column {
   transition: all 0.5s ease;
 }

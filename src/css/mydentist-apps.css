@@ -19,7 +19,7 @@ a {
   color: #8f8f8f;
   cursor: pointer;
   background-color: #fff;
-  outline: 1px solid rgba(190, 190, 190, 0.25);
+  outline: 1px solid rgba(0, 0, 0, 0.03);
   flex-direction: column;
   justify-content: center;
   align-items: center;

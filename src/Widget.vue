@@ -13,6 +13,7 @@
         @click.stop="handlepopupClinics"
         id="w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe"
         class="bokningswidget-column left"
+        :class="{ 'bokningswidget-column left open': animationFlag }"
       >
         <div class="hover-background"></div>
         <div>Klinik / Ort</div>
@@ -22,6 +23,7 @@
         @click="handlepopupProcedures"
         id="w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe"
         class="bokningswidget-column"
+        :class="{ 'bokningswidget-column open': animationFlag }"
       >
         <div class="hover-background"></div>
         <div>Behandling</div>
@@ -39,6 +41,7 @@
         @click="handlepopupCaregivers"
         id="w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe"
         class="bokningswidget-column"
+        :class="{ 'bokningswidget-column open': animationFlag }"
       >
         <div class="hover-background"></div>
         <div>Behandlare</div>
@@ -61,10 +64,11 @@
       <div
         id="w-node-_15d05f01-d5c1-4387-6d10-54988da43617-1e7ebdbe"
         class="bokningswidget-column right"
+        :class="{ 'bokningswidget-column right open': animationFlag }"
         @click="handleBooking"
       >
         <div class="hover-layer">
-          <div>Visa lediga tider</div>
+          <div class="text-large visa-lediga">Visa lediga tider</div>
         </div>
       </div>
 
@@ -276,12 +280,17 @@ export default {
       listCaregivers: [],
       popupSearch: "",
       searchList: [],
+      animationFlag: false,
     };
   },
 
   async created() {
     this.listClinics = await this.getApiData(this.apiBaseUrl + this.getClinics);
     this.initQueries();
+  },
+
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
   },
 
   methods: {
@@ -444,6 +453,13 @@ export default {
     },
 
     handleBooking() {
+      if (!this.animationFlag) {
+        this.animationFlag = true;
+        return;
+      }
+
+      if (!this.clinicId) return;
+
       const queryString = this.getQueryString();
 
       // this.$router.push("/boka-tid" + queryString);
@@ -522,6 +538,8 @@ export default {
               }
             }
           }
+
+          this.animationFlag = true;
         }
 
         this.updateQueryString();
@@ -674,6 +692,14 @@ export default {
       this.updateQueryString();
       this.emitQueryString();
     },
+
+    handleResize() {
+      if (this.clinicId) {
+        this.animationFlag = true;
+      } else {
+        this.animationFlag = false;
+      }
+    },
   },
 
   watch: {
@@ -737,8 +763,18 @@ export default {
       }
     },
   },
+
+  beforeDestroy() {
+    window.removeEventListener("resize", this.handleResize);
+  },
 };
 </script>
+
+<style>
+.bokningswidget-column {
+  transition: all 0.5s ease;
+}
+</style>
 
 <style scoped>
 .column {

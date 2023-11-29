@@ -93,6 +93,10 @@ a {
   box-shadow: 4px 4px 15px 4px rgba(0, 0, 0, 0.12);
 }
 
+.bokningswidget-wrapper.open-status {
+  margin-top: 10rem;
+}
+
 .text-large {
   color: #000;
   text-align: center;
@@ -100,6 +104,12 @@ a {
   font-size: 1.21rem;
   font-weight: 700;
   line-height: 1.71rem;
+}
+
+.text-large.visa-lediga {
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
 }
 
 .hover-layer {
@@ -337,6 +347,7 @@ a {
 
 .review-star {
   width: 1rem;
+  color: #992981;
 }
 
 .review-score-wrapper {
@@ -349,6 +360,20 @@ a {
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 2rem;
+}
+
+.review-score-wrapper.badge {
+  max-height: 2.6rem;
+  max-width: 10rem;
+  background-color: #fff;
+  border-radius: 12px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1rem 1rem 0.7rem;
+  display: flex;
 }
 
 .button-userreviews {
@@ -369,8 +394,6 @@ a {
 .list-popup-wrapper {
   z-index: 2147483647;
   height: 100vh;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.75);
   grid-template-rows: auto auto;
@@ -791,7 +814,7 @@ a {
   border: 1px solid #000;
   border-radius: 12px;
   align-self: flex-start;
-  margin-top: 3rem;
+  margin-top: 1.4rem;
   padding: 0.9rem 4rem 0.6rem;
   font-family: Fororounded, sans-serif;
   font-size: 1.063rem;
@@ -826,6 +849,28 @@ a {
   right: 0%;
 }
 
+.text-review-score {
+  margin-right: 0.5rem;
+  padding-bottom: 0.2rem;
+  font-family: Fororounded, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1rem;
+}
+
+.draperi {
+  background-color: #fff;
+  position: absolute;
+  top: 0%;
+  bottom: 0%;
+  left: 91%;
+  right: 0%;
+}
+
+.star-wrapper {
+  position: relative;
+}
+
 @media screen and (max-width: 991px) {
   .bokningswidget-column {
     font-size: 0.7rem;
@@ -844,6 +889,11 @@ a {
   .text-large {
     font-size: 1.2rem;
     line-height: 1.7rem;
+  }
+
+  .text-large.visa-lediga {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .bokningsui-wrapper {
@@ -892,6 +942,11 @@ a {
   .text-large {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .text-large.visa-lediga {
+    font-size: 0.9rem;
+    line-height: 1.4rem;
   }
 
   .bokningsui-wrapper {
@@ -976,18 +1031,30 @@ a {
 
 @media screen and (max-width: 479px) {
   .bokningswidget-column {
+    border-radius: 1rem;
+    margin-bottom: -4.7rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
 
   .bokningswidget-column.left {
-    border-top-right-radius: 1.2rem;
-    border-bottom-left-radius: 0;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  .bokningswidget-column.left.open {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
   }
 
   .bokningswidget-column.right {
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 1.2rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  .bokningswidget-column.right.open {
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
   }
 
   .bokningswidget-column.list-popup,
@@ -995,11 +1062,20 @@ a {
     bottom: auto;
   }
 
+  .bokningswidget-column.open {
+    border-radius: 0;
+    margin-bottom: 0;
+  }
+
   .bokningswidget-wrapper {
     height: auto;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     grid-auto-rows: 1fr;
+  }
+
+  .bokningswidget-wrapper.open-status {
+    margin-top: 20rem;
   }
 
   .bokningsui-wrapper,
@@ -1046,6 +1122,10 @@ a {
     grid-auto-rows: auto;
   }
 
+  .text-clean-filtering {
+    opacity: 0;
+  }
+
   .clean-filtering-wrapper {
     bottom: -9%;
   }
@@ -1058,7 +1138,11 @@ a {
 #w-node-_0ce87386-09bd-15c0-b072-0835fb14c6cc-1e7ebdbe,
 #w-node-_91f649a3-bb70-a795-b83a-2447edc0e2f4-1e7ebdbe,
 #w-node-cddf50a4-4c92-fe6b-0172-49fec9704d62-1e7ebdbe,
-#w-node-_15d05f01-d5c1-4387-6d10-54988da43617-1e7ebdbe {
+#w-node-_15d05f01-d5c1-4387-6d10-54988da43617-1e7ebdbe,
+#w-node-f285acf7-1f00-687a-487a-5cbdb89bc930-1e7ebdbe,
+#w-node-f285acf7-1f00-687a-487a-5cbdb89bc936-1e7ebdbe,
+#w-node-f285acf7-1f00-687a-487a-5cbdb89bc93f-1e7ebdbe,
+#w-node-f285acf7-1f00-687a-487a-5cbdb89bc948-1e7ebdbe {
   grid-area: span 1 / span 1 / span 1 / span 1;
   align-self: stretch;
   justify-self: stretch;

@@ -93,10 +93,6 @@ a {
   box-shadow: 4px 4px 15px 4px rgba(0, 0, 0, 0.12);
 }
 
-.bokningswidget-wrapper.open-status {
-  margin-top: 10rem;
-}
-
 .text-large {
   color: #000;
   text-align: center;
@@ -871,6 +867,10 @@ a {
   position: relative;
 }
 
+.spacer {
+  height: 15rem;
+}
+
 @media screen and (max-width: 991px) {
   .bokningswidget-column {
     font-size: 0.7rem;
@@ -1072,10 +1072,11 @@ a {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
     grid-auto-rows: 1fr;
+    margin-top: 7rem;
   }
 
-  .bokningswidget-wrapper.open-status {
-    margin-top: 20rem;
+  .bokningswidget-wrapper.open {
+    margin-top: 0;
   }
 
   .bokningsui-wrapper,
@@ -1122,12 +1123,13 @@ a {
     grid-auto-rows: auto;
   }
 
-  .text-clean-filtering {
+  .clean-filtering-wrapper {
     opacity: 0;
+    bottom: -9%;
   }
 
-  .clean-filtering-wrapper {
-    bottom: -9%;
+  .clean-filtering-wrapper.open {
+    opacity: 1;
   }
 }
 
@@ -1271,29 +1273,29 @@ a {
 }
 
 /* @font-face {
-  font-family: "Fororounded";
-  src: url("../fonts/ForoRounded-Bold.otf") format("opentype");
+  font-family: 'Fororounded';
+  src: url('../fonts/ForoRounded-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Fororounded";
-  src: url("../fonts/ForoRounded-Light.otf") format("opentype");
+  font-family: 'Fororounded';
+  src: url('../fonts/ForoRounded-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: "Fororounded";
-  src: url("../fonts/ForoRounded-Italic.otf") format("opentype");
+  font-family: 'Fororounded';
+  src: url('../fonts/ForoRounded-Italic.otf') format('opentype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
-  font-family: "Fororounded";
-  src: url("../fonts/ForoRounded-Regular.otf") format("opentype");
+  font-family: 'Fororounded';
+  src: url('../fonts/ForoRounded-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

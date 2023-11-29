@@ -8,6 +8,7 @@
     <div
       id="w-node-_051a9b96-4ead-e118-8a59-194af47cb073-1e7ebdbe"
       class="bokningswidget-wrapper"
+      :class="{ 'bokningswidget-wrapper open': animationFlag }"
     >
       <div
         @click.stop="handlepopupClinics"
@@ -72,7 +73,10 @@
         </div>
       </div>
 
-      <div class="clean-filtering-wrapper">
+      <div
+        class="clean-filtering-wrapper"
+        :class="{ 'clean-filtering-wrapper open': animationFlag }"
+      >
         <div @click="cleanFiltering" class="text-clean-filtering">
           Rensa filtrering
         </div>

@@ -28,6 +28,14 @@
       muntra_without_modal="true"
     ></div>
 
+    <div
+      v-else-if="clinicId"
+      class="muntra-widget without-modal"
+      key="3"
+      :muntra_clinic_id="clinicId"
+      muntra_without_modal="true"
+    ></div>
+
     <!-- to keep the css classes for the external widget from being purged -->
     <div
       style="display: none"

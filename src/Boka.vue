@@ -8,6 +8,7 @@
       :muntra_procedure_id="procedureId"
       :muntra_caregiver_id="caregiverId"
       muntra_without_modal="true"
+      goal_page_url="https://mydentist.se/tack-for-din-bokning/"
     ></div>
 
     <div
@@ -17,6 +18,7 @@
       :muntra_clinic_id="clinicId"
       :muntra_procedure_id="procedureId"
       muntra_without_modal="true"
+      goal_page_url="https://mydentist.se/tack-for-din-bokning/"
     ></div>
 
     <div
@@ -26,6 +28,7 @@
       :muntra_clinic_id="clinicId"
       :muntra_caregiver_id="caregiverId"
       muntra_without_modal="true"
+      goal_page_url="https://mydentist.se/tack-for-din-bokning/"
     ></div>
 
     <div
@@ -34,6 +37,7 @@
       key="3"
       :muntra_clinic_id="clinicId"
       muntra_without_modal="true"
+      goal_page_url="https://mydentist.se/tack-for-din-bokning/"
     ></div>
 
     <!-- to keep the css classes for the external widget from being purged -->

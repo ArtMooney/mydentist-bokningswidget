@@ -208,7 +208,7 @@
                 </div>
                 <div>
                   {{ caregiver.attributes.role }},
-                  {{ caregiver.attributes.city }}, {{ procedureId }}
+                  {{ caregiver.attributes.city }}
                 </div>
               </div>
             </div>
